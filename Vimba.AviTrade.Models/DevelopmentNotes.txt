@@ -1,0 +1,7 @@
+﻿13 Jul 2012:
+* It is possible that we need to add roles to the trader user registration! This may mean that the trader registration tokens will be smarter 
+as we will have to provide atoken for each role.  
+
+26 Jul 2012:
+* Order View or Viewed By must be maintained per user 
+* Order Archive must be maintained per user 

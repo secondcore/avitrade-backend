@@ -1,0 +1,50 @@
+﻿@using System.Web.Optimization
+@model Vimba.AviTrade.Models.Trader
+
+@{
+	ViewBag.Link = "home";
+	ViewBag.Title = "Traders Home";
+}
+
+@section featured {
+	<section class="featured">
+		<div class="content-wrapper">
+			<hgroup class="title">
+				@Html.Action("TraderDetail")
+			</hgroup>
+		</div>
+	</section>
+}
+
+<article>
+	<h3>Running total of orders</h3>
+	<div id="monthlyTotalSpend" class='chart-holder'>
+	</div>
+</article>
+
+<aside>
+	<h3>Useful Links</h3>
+	<ul>
+		<li>@Html.ActionLink("View About", "About", "Home", new { area = "" }, null)</li>
+		<li><a href="">Fill out an Online Enrollment Form</a></li>
+		<li><a href="">Request a Personal Presentation</a></li>
+		<li><a href="">Send us a Question</a></li>
+	</ul>
+</aside>
+
+@section scripts {
+	@Scripts.Render("~/bundles/flot")
+	<script type="text/javascript">
+		var plot = null;
+		 $(document).ready(function ()  {
+//			dataService.getPurchasesMonthlyTotalSpendsByMerchantDataPoints(@Model.Id, function (monthliesData) {
+//				if (monthliesData == null || monthliesData.length == 0) return;
+//				var chartLabels = ["Purchase", "Accumulation Reserves", "Referral Bonus", "Cash Discount"];
+//			   // plot = yesrFormatter.renderMonthlyChart($("#monthlyTotalSpend"), 700, 400, 'red', chartLabels, monthliesData, true, 'nw');
+//			   yesrFormatter.renderMonthlyGraph($("#monthlyTotalSpend"), 'Category3', 700,400, chartLabels, monthliesData, true);
+//			}, function (error) {
+//                yesrFormatter.showError("An error occurred during monthly data retrieval: " + error.toString());
+//            });
+		});
+	</script>
+}

@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="AviTradeOLTPDataStore" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="AviTradeOLTPDataStore">
+    <EntitySet Name="Aircraft" EntityType="AviTradeOLTPDataStore.Aircraft" store:Type="Tables" Schema="dbo" Table="Aircraft" />
+    <EntitySet Name="Airports" EntityType="AviTradeOLTPDataStore.Airport" store:Type="Tables" Schema="dbo" Table="Airports" />
+    <EntitySet Name="Contracts" EntityType="AviTradeOLTPDataStore.Contract" store:Type="Tables" Schema="dbo" Table="Contracts" />
+    <EntitySet Name="CreditCards" EntityType="AviTradeOLTPDataStore.CreditCard" store:Type="Tables" Schema="dbo" Table="CreditCards" />
+    <EntitySet Name="Groups" EntityType="AviTradeOLTPDataStore.Group" store:Type="Tables" Schema="dbo" Table="Groups" />
+    <EntitySet Name="Instances" EntityType="AviTradeOLTPDataStore.Instance" store:Type="Tables" Schema="dbo" Table="Instances" />
+    <EntitySet Name="Items" EntityType="AviTradeOLTPDataStore.Item" store:Type="Tables" Schema="dbo" Table="Items" />
+    <EntitySet Name="OrderLineItems" EntityType="AviTradeOLTPDataStore.OrderLineItem" store:Type="Tables" Schema="dbo" Table="OrderLineItems" />
+    <EntitySet Name="Orders" EntityType="AviTradeOLTPDataStore.Order" store:Type="Tables" Schema="dbo" Table="Orders" />
+    <EntitySet Name="Traders" EntityType="AviTradeOLTPDataStore.Trader" store:Type="Tables" Schema="dbo" Table="Traders" />
+    <EntitySet Name="Users" EntityType="AviTradeOLTPDataStore.User" store:Type="Tables" Schema="dbo" Table="Users" />
+    <EntitySet Name="TraderRegistrationTokens" EntityType="AviTradeOLTPDataStore.TraderRegistrationToken" store:Type="Tables" Schema="dbo" Table="TraderRegistrationTokens" />
+    <EntitySet Name="UserConfigurationItems" EntityType="AviTradeOLTPDataStore.UserConfigurationItem" store:Type="Tables" Schema="dbo" Table="UserConfigurationItems" />
+    <AssociationSet Name="FK_Contracts_Instances_InstanceId" Association="AviTradeOLTPDataStore.FK_Contracts_Instances_InstanceId">
+      <End Role="Instances" EntitySet="Instances" />
+      <End Role="Contracts" EntitySet="Contracts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contracts_Traders_TraderOneId" Association="AviTradeOLTPDataStore.FK_Contracts_Traders_TraderOneId">
+      <End Role="Traders" EntitySet="Traders" />
+      <End Role="Contracts" EntitySet="Contracts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contracts_Traders_TraderTwoId" Association="AviTradeOLTPDataStore.FK_Contracts_Traders_TraderTwoId">
+      <End Role="Traders" EntitySet="Traders" />
+      <End Role="Contracts" EntitySet="Contracts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CreditCards_Traders_TraderId" Association="AviTradeOLTPDataStore.FK_CreditCards_Traders_TraderId">
+      <End Role="Traders" EntitySet="Traders" />
+      <End Role="CreditCards" EntitySet="CreditCards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderLineItems_Items_ItemId" Association="AviTradeOLTPDataStore.FK_OrderLineItems_Items_ItemId">
+      <End Role="Items" EntitySet="Items" />
+      <End Role="OrderLineItems" EntitySet="OrderLineItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderLineItems_Orders_OrderId" Association="AviTradeOLTPDataStore.FK_OrderLineItems_Orders_OrderId">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="OrderLineItems" EntitySet="OrderLineItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Aircraft_AircraftId" Association="AviTradeOLTPDataStore.FK_Orders_Aircraft_AircraftId">
+      <End Role="Aircraft" EntitySet="Aircraft" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Airports_LandingAirportId" Association="AviTradeOLTPDataStore.FK_Orders_Airports_LandingAirportId">
+      <End Role="Airports" EntitySet="Airports" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Airports_TakeoffAirportId" Association="AviTradeOLTPDataStore.FK_Orders_Airports_TakeoffAirportId">
+      <End Role="Airports" EntitySet="Airports" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Contracts_ContractId" Association="AviTradeOLTPDataStore.FK_Orders_Contracts_ContractId">
+      <End Role="Contracts" EntitySet="Contracts" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Traders_BuyerId" Association="AviTradeOLTPDataStore.FK_Orders_Traders_BuyerId">
+      <End Role="Traders" EntitySet="Traders" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Traders_SellerId" Association="AviTradeOLTPDataStore.FK_Orders_Traders_SellerId">
+      <End Role="Traders" EntitySet="Traders" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Groups_GroupId" Association="AviTradeOLTPDataStore.FK_Users_Groups_GroupId">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TraderRegistrationTokens_Traders_TraderId" Association="AviTradeOLTPDataStore.FK_TraderRegistrationTokens_Traders_TraderId">
+      <End Role="Traders" EntitySet="Traders" />
+      <End Role="TraderRegistrationTokens" EntitySet="TraderRegistrationTokens" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserConfigurationItems_Users_UserId" Association="AviTradeOLTPDataStore.FK_UserConfigurationItems_Users_UserId">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserConfigurationItems" EntitySet="UserConfigurationItems" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Aircraft">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Manufacturer" Type="nvarchar(max)" />
+    <Property Name="Model" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Airport">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="City" Type="nvarchar(max)" />
+    <Property Name="CountryId" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="Contract">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" Nullable="false" />
+    <Property Name="TraderOneApprovalDate" Type="datetime" Nullable="false" />
+    <Property Name="TraderTwoApprovalDate" Type="datetime" Nullable="false" />
+    <Property Name="IsTraderOneApproved" Type="bit" Nullable="false" />
+    <Property Name="IsTraderTwoApproved" Type="bit" Nullable="false" />
+    <Property Name="BillingCurrencyId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="TimeZoneId" Type="int" Nullable="false" />
+    <Property Name="RowVersion" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+    <Property Name="InstanceId" Type="int" Nullable="false" />
+    <Property Name="TraderOneId" Type="int" Nullable="false" />
+    <Property Name="TraderTwoId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CreditCard">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="HolderName" Type="nvarchar(max)" />
+    <Property Name="CardNumber" Type="nvarchar(max)" />
+    <Property Name="ExpDate" Type="nvarchar(max)" />
+    <Property Name="SecurityCode" Type="nvarchar(max)" />
+    <Property Name="RowVersion" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+    <Property Name="TraderId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="RowVersion" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="Instance">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Industry" Type="nvarchar(max)" />
+    <Property Name="AdminFeePercentage" Type="float" Nullable="false" />
+    <Property Name="PivotCurrencyId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="GlobalPivotCurrencyId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="RowVersion" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Category" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SubCategory" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Unit" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ImageUrl" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Rating" Type="int" Nullable="false" />
+    <Property Name="RowVersion" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="OrderLineItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FulfilmentDate" Type="datetime" Nullable="false" />
+    <Property Name="Units" Type="int" Nullable="false" />
+    <Property Name="PricePerUnit" Type="float" Nullable="false" />
+    <Property Name="Amount" Type="float" Nullable="false" />
+    <Property Name="AdminFee" Type="float" Nullable="false" />
+    <Property Name="PivotExchangeRate" Type="float" Nullable="false" />
+    <Property Name="GlobalPivotExchangeRate" Type="float" Nullable="false" />
+    <Property Name="CurrencyId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="OrderId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="OrderDate" Type="datetime" Nullable="false" />
+    <Property Name="QuotationDate" Type="datetime" Nullable="false" />
+    <Property Name="IsQuoted" Type="bit" Nullable="false" />
+    <Property Name="ApprovalDate" Type="datetime" Nullable="false" />
+    <Property Name="IsApproved" Type="bit" Nullable="false" />
+    <Property Name="FulfilmentDate" Type="datetime" Nullable="false" />
+    <Property Name="IsFulfilled" Type="bit" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="float" Nullable="false" />
+    <Property Name="PivotExchangeRate" Type="float" Nullable="false" />
+    <Property Name="GlobalPivotExchangeRate" Type="float" Nullable="false" />
+    <Property Name="AdminFee" Type="float" Nullable="false" />
+    <Property Name="BuyerCardHolderName" Type="nvarchar(max)" />
+    <Property Name="BuyerCardNumber" Type="nvarchar(max)" />
+    <Property Name="BuyerCardExpDate" Type="nvarchar(max)" />
+    <Property Name="BuyerCardSecurityCode" Type="nvarchar(max)" />
+    <Property Name="BuyerPaypalUserId" Type="nvarchar(max)" />
+    <Property Name="BuyerPaypalPassword" Type="nvarchar(max)" />
+    <Property Name="BuyerReferenceNumber" Type="nvarchar(max)" />
+    <Property Name="SellerCardHolderName" Type="nvarchar(max)" />
+    <Property Name="SellerCardNumber" Type="nvarchar(max)" />
+    <Property Name="SellerCardExpDate" Type="nvarchar(max)" />
+    <Property Name="SellerCardSecurityCode" Type="nvarchar(max)" />
+    <Property Name="SellerPaypalUserId" Type="nvarchar(max)" />
+    <Property Name="SellerPaypalPassword" Type="nvarchar(max)" />
+    <Property Name="SellerReferenceNumber" Type="nvarchar(max)" />
+    <Property Name="Operator" Type="nvarchar(max)" />
+    <Property Name="FlightNumber" Type="nvarchar(max)" />
+    <Property Name="EstimatedTakeoffTime" Type="datetime" Nullable="false" />
+    <Property Name="EstimatedLandingTime" Type="datetime" Nullable="false" />
+    <Property Name="AircraftId" Type="int" />
+    <Property Name="LandingAirportId" Type="int" />
+    <Property Name="TakeoffAirportId" Type="int" />
+    <Property Name="ContractId" Type="int" Nullable="false" />
+    <Property Name="BuyerId" Type="int" Nullable="false" />
+    <Property Name="SellerId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Trader">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Account" Type="nvarchar(max)" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Address2" Type="nvarchar(max)" />
+    <Property Name="City" Type="nvarchar(max)" />
+    <Property Name="Phone" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="Contact" Type="nvarchar(max)" />
+    <Property Name="Fax" Type="nvarchar(max)" />
+    <Property Name="CurrentInvoiceCounter" Type="int" Nullable="false" />
+    <Property Name="CountryId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="RowVersion" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Login" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="PhotoUrl" Type="nvarchar(max)" />
+    <Property Name="GroupId" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="TraderRegistrationToken">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="Token" Type="nvarchar(max)" />
+    <Property Name="TraderId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserConfigurationItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="nvarchar(max)" />
+    <Property Name="Value" Type="nvarchar(max)" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Contracts_Instances_InstanceId">
+    <End Role="Instances" Type="AviTradeOLTPDataStore.Instance" Multiplicity="1" />
+    <End Role="Contracts" Type="AviTradeOLTPDataStore.Contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instances">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contracts">
+        <PropertyRef Name="InstanceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contracts_Traders_TraderOneId">
+    <End Role="Traders" Type="AviTradeOLTPDataStore.Trader" Multiplicity="1" />
+    <End Role="Contracts" Type="AviTradeOLTPDataStore.Contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Traders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contracts">
+        <PropertyRef Name="TraderOneId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contracts_Traders_TraderTwoId">
+    <End Role="Traders" Type="AviTradeOLTPDataStore.Trader" Multiplicity="1" />
+    <End Role="Contracts" Type="AviTradeOLTPDataStore.Contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Traders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contracts">
+        <PropertyRef Name="TraderTwoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CreditCards_Traders_TraderId">
+    <End Role="Traders" Type="AviTradeOLTPDataStore.Trader" Multiplicity="1" />
+    <End Role="CreditCards" Type="AviTradeOLTPDataStore.CreditCard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Traders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CreditCards">
+        <PropertyRef Name="TraderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderLineItems_Items_ItemId">
+    <End Role="Items" Type="AviTradeOLTPDataStore.Item" Multiplicity="1" />
+    <End Role="OrderLineItems" Type="AviTradeOLTPDataStore.OrderLineItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Items">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderLineItems">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderLineItems_Orders_OrderId">
+    <End Role="Orders" Type="AviTradeOLTPDataStore.Order" Multiplicity="1" />
+    <End Role="OrderLineItems" Type="AviTradeOLTPDataStore.OrderLineItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderLineItems">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Aircraft_AircraftId">
+    <End Role="Aircraft" Type="AviTradeOLTPDataStore.Aircraft" Multiplicity="0..1" />
+    <End Role="Orders" Type="AviTradeOLTPDataStore.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aircraft">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="AircraftId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Airports_LandingAirportId">
+    <End Role="Airports" Type="AviTradeOLTPDataStore.Airport" Multiplicity="0..1" />
+    <End Role="Orders" Type="AviTradeOLTPDataStore.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Airports">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="LandingAirportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Airports_TakeoffAirportId">
+    <End Role="Airports" Type="AviTradeOLTPDataStore.Airport" Multiplicity="0..1" />
+    <End Role="Orders" Type="AviTradeOLTPDataStore.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Airports">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="TakeoffAirportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Contracts_ContractId">
+    <End Role="Contracts" Type="AviTradeOLTPDataStore.Contract" Multiplicity="1" />
+    <End Role="Orders" Type="AviTradeOLTPDataStore.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contracts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="ContractId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Traders_BuyerId">
+    <End Role="Traders" Type="AviTradeOLTPDataStore.Trader" Multiplicity="1" />
+    <End Role="Orders" Type="AviTradeOLTPDataStore.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Traders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="BuyerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Traders_SellerId">
+    <End Role="Traders" Type="AviTradeOLTPDataStore.Trader" Multiplicity="1" />
+    <End Role="Orders" Type="AviTradeOLTPDataStore.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Traders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="SellerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Groups_GroupId">
+    <End Role="Groups" Type="AviTradeOLTPDataStore.Group" Multiplicity="1" />
+    <End Role="Users" Type="AviTradeOLTPDataStore.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TraderRegistrationTokens_Traders_TraderId">
+    <End Role="Traders" Type="AviTradeOLTPDataStore.Trader" Multiplicity="1" />
+    <End Role="TraderRegistrationTokens" Type="AviTradeOLTPDataStore.TraderRegistrationToken" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Traders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TraderRegistrationTokens">
+        <PropertyRef Name="TraderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserConfigurationItems_Users_UserId">
+    <End Role="Users" Type="AviTradeOLTPDataStore.User" Multiplicity="1" />
+    <End Role="UserConfigurationItems" Type="AviTradeOLTPDataStore.UserConfigurationItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserConfigurationItems">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

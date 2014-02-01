@@ -1,0 +1,189 @@
+﻿@using Vimba.AviTrade.Models
+@model Vimba.AviTrade.Web.Areas.Traders.ViewModels.ContractsViewModel
+
+@{
+    ViewBag.Link = "contracts";
+    ViewBag.Title = "Contracts";
+}
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                @Html.Action("TraderDetail")
+            </hgroup>
+        </div>
+    </section>
+}
+
+<h5>Active Contracts</h5>
+<table class='datagrid'>
+	<tr>
+		<th>
+			Name
+		</th>
+		<th>
+			Start Date
+		</th>
+		<th>
+			End Date
+		</th>
+		<th>
+			Trading Partner
+		</th>
+		<th>
+			Billing Currency
+		</th>
+		<th>
+			Time Zone
+		</th>
+	</tr>
+
+    @foreach (var item in Model.ActiveContracts)
+    {
+        var partnerTrader = item.TraderTwo.Name;
+        if (item.TraderTwo.Id == Model.TraderId)
+        {
+            partnerTrader = item.TraderOne.Name;
+        }
+
+        <tr>
+			<td align='center'>@item.Name</td>
+			<td align='center'>@item.StartDate.ToString("dd MMM yyyy")</td>
+			<td align='center'>@item.EndDate.ToString("dd MMM yyyy")</td>
+			<td align='center'>@partnerTrader</td>
+			<td align='center'>@item.BillingCurrency.Name</td>
+			<td align='center'>@item.TimeZone.Name</td>
+		</tr>
+    }
+</table>
+
+<h5>Expiring Contracts</h5>
+<table class='datagrid'>
+	<tr>
+		<th>
+			Name
+		</th>
+		<th>
+			Start Date
+		</th>
+		<th>
+			End Date
+		</th>
+		<th>
+			Trading Partner
+		</th>
+		<th>
+			Billing Currency
+		</th>
+		<th>
+			Time Zone
+		</th>
+		<th>
+			
+		</th>
+	</tr>
+
+		
+    @foreach (var item in Model.ExpiringContracts)
+    {
+        var partnerTrader = item.TraderTwo.Name;
+        if (item.TraderTwo.Id == Model.TraderId)
+        {
+            partnerTrader = item.TraderOne.Name;
+        }
+
+        <tr>
+			<td align='center'>@item.Name</td>
+			<td align='center'>@item.StartDate.ToString("dd MMM yyyy")</td>
+			<td align='center'>@item.EndDate.ToString("dd MMM yyyy")</td>
+			<td align='center'>@partnerTrader</td>
+			<td align='center'>@item.BillingCurrency.Name</td>
+			<td align='center'>@item.TimeZone.Name</td>
+		    <td>@Html.ActionLink("Renew", "RenewContract", "Home", new { area = "Traders" }, null)</td>
+		</tr>
+    }
+</table>
+
+<h5>Pending Contracts</h5>
+<table class='datagrid'>
+	<tr>
+		<th>
+			Name
+		</th>
+		<th>
+			Start Date
+		</th>
+		<th>
+			End Date
+		</th>
+		<th>
+			Trading Partner
+		</th>
+		<th>
+			Pending On 
+		</th>
+		<th>
+			Billing Currency
+		</th>
+		<th>
+			Time Zone
+		</th>
+		<th>
+			
+		</th>
+	</tr>
+
+		
+    @foreach (var item in Model.ExpiringContracts)
+    {
+        var partnerTrader = item.TraderTwo.Name;
+        if (item.TraderTwo.Id == Model.TraderId)
+        {
+            partnerTrader = item.TraderOne.Name;
+        }
+
+        var waitingOn = item.TraderOne.Name;
+        if (item.TraderOne.Id == Model.TraderId)
+        {
+            if (item.IsTraderOneApproved)
+            {
+                waitingOn = partnerTrader;
+            }
+            else
+            {
+                waitingOn = "Me";
+            }
+        }
+        else if (item.TraderTwo.Id == Model.TraderId)
+        {
+            if (item.IsTraderTwoApproved)
+            {
+                waitingOn = partnerTrader;
+            }
+            else
+            {
+                waitingOn = "Me";
+            }
+        }
+        
+        <tr>
+			<td align='center'>@item.Name</td>
+			<td align='center'>@item.StartDate.ToString("dd MMM yyyy")</td>
+			<td align='center'>@item.EndDate.ToString("dd MMM yyyy")</td>
+			<td align='center'>@partnerTrader</td>
+			<td align='center'>@waitingOn</td>
+			<td align='center'>@item.BillingCurrency.Name</td>
+			<td align='center'>@item.TimeZone.Name</td>
+            <td>
+                @{
+                    if (waitingOn == "Me")
+                    {
+                        Html.ActionLink("Approve", "ApproveContract", "Home", new {area = "Traders"}, null);
+                    }
+                }
+
+            </td>
+		</tr>
+    }
+</table>

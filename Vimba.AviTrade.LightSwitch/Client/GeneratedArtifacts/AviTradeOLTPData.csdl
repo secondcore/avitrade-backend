@@ -1,0 +1,481 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" Namespace="LightSwitchApplication" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityType Name="Aircraft">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Manufacturer" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <Property Name="Model" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="Orders" Relationship="LightSwitchApplication.FK_Orders_Aircraft_AircraftId" ToRole="Orders" FromRole="Aircraft" />
+  </EntityType>
+  <EntityType Name="Airport">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <Property Name="Description" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <Property Name="City" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <Property Name="CountryId" Type="Edm.String" Nullable="false" MaxLength="128" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="Orders" Relationship="LightSwitchApplication.FK_Orders_Airports_LandingAirportId" ToRole="Orders" FromRole="Airports" />
+    <NavigationProperty Name="Orders1" Relationship="LightSwitchApplication.FK_Orders_Airports_TakeoffAirportId" ToRole="Orders" FromRole="Airports" />
+  </EntityType>
+  <EntityType Name="Contract">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreateDate" Type="Edm.DateTime" Nullable="false" Precision="3" />
+    <Property Name="Name" Type="Edm.String" MaxLength="Max" />
+    <Property Name="Description" Type="Edm.String" MaxLength="Max" />
+    <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndDate" Type="Edm.DateTime" Nullable="false" Precision="3" />
+    <Property Name="TraderOneApprovalDate" Type="Edm.DateTime" Nullable="false" Precision="3" />
+    <Property Name="TraderTwoApprovalDate" Type="Edm.DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsTraderOneApproved" Type="Edm.Boolean" Nullable="false" />
+    <Property Name="IsTraderTwoApproved" Type="Edm.Boolean" Nullable="false" />
+    <Property Name="BillingCurrencyId" Type="Edm.String" Nullable="false" MaxLength="128" />
+    <Property Name="TimeZoneId" Type="Edm.Int32" Nullable="false" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" MaxLength="8" FixedLength="true" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="InstanceId" Type="Edm.Int32" Nullable="false" />
+    <Property Name="TraderOneId" Type="Edm.Int32" Nullable="false" />
+    <Property Name="TraderTwoId" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="Instance" Relationship="LightSwitchApplication.FK_Contracts_Instances_InstanceId" ToRole="Instances" FromRole="Contracts" />
+    <NavigationProperty Name="TraderOne" Relationship="LightSwitchApplication.FK_Contracts_Traders_TraderOneId" ToRole="Traders" FromRole="Contracts" />
+    <NavigationProperty Name="TraderTwo" Relationship="LightSwitchApplication.FK_Contracts_Traders_TraderTwoId" ToRole="Traders" FromRole="Contracts" />
+    <NavigationProperty Name="Orders" Relationship="LightSwitchApplication.FK_Orders_Contracts_ContractId" ToRole="Orders" FromRole="Contracts" />
+  </EntityType>
+  <EntityType Name="CreditCard">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HolderName" Type="Edm.String" MaxLength="Max" />
+    <Property Name="CardNumber" Type="Edm.String" MaxLength="Max" />
+    <Property Name="ExpDate" Type="Edm.String" MaxLength="Max" />
+    <Property Name="SecurityCode" Type="Edm.String" MaxLength="Max" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" MaxLength="8" FixedLength="true" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="TraderId" Type="Edm.Int32" Nullable="false" />
+    <NavigationProperty Name="Trader" Relationship="LightSwitchApplication.FK_CreditCards_Traders_TraderId" ToRole="Traders" FromRole="CreditCards" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="128" />
+    <Property Name="Name" Type="Edm.String" MaxLength="Max" />
+    <Property Name="Description" Type="Edm.String" MaxLength="Max" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" MaxLength="8" FixedLength="true" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Users" Relationship="LightSwitchApplication.FK_Users_Groups_GroupId" ToRole="Users" FromRole="Groups" />
+  </EntityType>
+  <EntityType Name="Instance">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="Edm.String" MaxLength="Max" />
+    <Property Name="Description" Type="Edm.String" MaxLength="Max" />
+    <Property Name="Industry" Type="Edm.String" MaxLength="Max" />
+    <Property Name="AdminFeePercentage" Type="Edm.Double" Nullable="false" />
+    <Property Name="PivotCurrencyId" Type="Edm.String" Nullable="false" MaxLength="128" />
+    <Property Name="GlobalPivotCurrencyId" Type="Edm.String" Nullable="false" MaxLength="128" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" MaxLength="8" FixedLength="true" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Contracts" Relationship="LightSwitchApplication.FK_Contracts_Instances_InstanceId" ToRole="Contracts" FromRole="Instances" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Category" Type="Edm.String" Nullable="false" MaxLength="Max" />
+    <Property Name="SubCategory" Type="Edm.String" Nullable="false" MaxLength="Max" />
+    <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="Max" />
+    <Property Name="Unit" Type="Edm.String" Nullable="false" MaxLength="Max" />
+    <Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="Max" />
+    <Property Name="ImageUrl" Type="Edm.String" Nullable="false" MaxLength="Max" />
+    <Property Name="Rating" Type="Edm.Int32" Nullable="false" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" MaxLength="8" FixedLength="true" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="OrderLineItems" Relationship="LightSwitchApplication.FK_OrderLineItems_Items_ItemId" ToRole="OrderLineItems" FromRole="Items" />
+  </EntityType>
+  <EntityType Name="OrderLineItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FulfilmentDate" Type="Edm.DateTime" Nullable="false" Precision="3" ConcurrencyMode="Fixed" />
+    <Property Name="Units" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="PricePerUnit" Type="Edm.Double" Nullable="false" />
+    <Property Name="Amount" Type="Edm.Double" Nullable="false" />
+    <Property Name="AdminFee" Type="Edm.Double" Nullable="false" />
+    <Property Name="PivotExchangeRate" Type="Edm.Double" Nullable="false" />
+    <Property Name="GlobalPivotExchangeRate" Type="Edm.Double" Nullable="false" />
+    <Property Name="CurrencyId" Type="Edm.String" Nullable="false" MaxLength="128" ConcurrencyMode="Fixed" />
+    <Property Name="ItemId" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="OrderId" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="Item" Relationship="LightSwitchApplication.FK_OrderLineItems_Items_ItemId" ToRole="Items" FromRole="OrderLineItems" />
+    <NavigationProperty Name="Order" Relationship="LightSwitchApplication.FK_OrderLineItems_Orders_OrderId" ToRole="Orders" FromRole="OrderLineItems" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderDate" Type="Edm.DateTime" Nullable="false" Precision="3" ConcurrencyMode="Fixed" />
+    <Property Name="QuotationDate" Type="Edm.DateTime" Nullable="false" Precision="3" ConcurrencyMode="Fixed" />
+    <Property Name="IsQuoted" Type="Edm.Boolean" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="ApprovalDate" Type="Edm.DateTime" Nullable="false" Precision="3" ConcurrencyMode="Fixed" />
+    <Property Name="IsApproved" Type="Edm.Boolean" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="FulfilmentDate" Type="Edm.DateTime" Nullable="false" Precision="3" ConcurrencyMode="Fixed" />
+    <Property Name="IsFulfilled" Type="Edm.Boolean" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="Status" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="Amount" Type="Edm.Double" Nullable="false" />
+    <Property Name="PivotExchangeRate" Type="Edm.Double" Nullable="false" />
+    <Property Name="GlobalPivotExchangeRate" Type="Edm.Double" Nullable="false" />
+    <Property Name="AdminFee" Type="Edm.Double" Nullable="false" />
+    <Property Name="BuyerCardHolderName" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <Property Name="BuyerCardNumber" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <Property Name="BuyerCardExpDate" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <Property Name="BuyerCardSecurityCode" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <Property Name="BuyerPaypalUserId" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <Property Name="BuyerPaypalPassword" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <Property Name="BuyerReferenceNumber" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <Property Name="SellerCardHolderName" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <Property Name="SellerCardNumber" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <Property Name="SellerCardExpDate" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <Property Name="SellerCardSecurityCode" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <Property Name="SellerPaypalUserId" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <Property Name="SellerPaypalPassword" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <Property Name="SellerReferenceNumber" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <Property Name="Operateur" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <Property Name="FlightNumber" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <Property Name="EstimatedTakeoffTime" Type="Edm.DateTime" Nullable="false" Precision="3" ConcurrencyMode="Fixed" />
+    <Property Name="EstimatedLandingTime" Type="Edm.DateTime" Nullable="false" Precision="3" ConcurrencyMode="Fixed" />
+    <Property Name="AircraftId" Type="Edm.Int32" ConcurrencyMode="Fixed" />
+    <Property Name="LandingAirportId" Type="Edm.Int32" ConcurrencyMode="Fixed" />
+    <Property Name="TakeoffAirportId" Type="Edm.Int32" ConcurrencyMode="Fixed" />
+    <Property Name="ContractId" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="BuyerId" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="SellerId" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="OrderLineItems" Relationship="LightSwitchApplication.FK_OrderLineItems_Orders_OrderId" ToRole="OrderLineItems" FromRole="Orders" />
+    <NavigationProperty Name="Aircraft" Relationship="LightSwitchApplication.FK_Orders_Aircraft_AircraftId" ToRole="Aircraft" FromRole="Orders" />
+    <NavigationProperty Name="LandingAirport" Relationship="LightSwitchApplication.FK_Orders_Airports_LandingAirportId" ToRole="Airports" FromRole="Orders" />
+    <NavigationProperty Name="TakeoffAirport" Relationship="LightSwitchApplication.FK_Orders_Airports_TakeoffAirportId" ToRole="Airports" FromRole="Orders" />
+    <NavigationProperty Name="Contract" Relationship="LightSwitchApplication.FK_Orders_Contracts_ContractId" ToRole="Contracts" FromRole="Orders" />
+    <NavigationProperty Name="Buyer" Relationship="LightSwitchApplication.FK_Orders_Traders_BuyerId" ToRole="Traders" FromRole="Orders" />
+    <NavigationProperty Name="Seller" Relationship="LightSwitchApplication.FK_Orders_Traders_SellerId" ToRole="Traders" FromRole="Orders" />
+  </EntityType>
+  <EntityType Name="Trader">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Account" Type="Edm.String" MaxLength="Max" />
+    <Property Name="Name" Type="Edm.String" MaxLength="Max" />
+    <Property Name="Address" Type="Edm.String" MaxLength="Max" />
+    <Property Name="Address2" Type="Edm.String" MaxLength="Max" />
+    <Property Name="City" Type="Edm.String" MaxLength="Max" />
+    <Property Name="Phone" Type="Edm.String" MaxLength="Max" />
+    <Property Name="Email" Type="Edm.String" MaxLength="Max" />
+    <Property Name="Contact" Type="Edm.String" MaxLength="Max" />
+    <Property Name="Fax" Type="Edm.String" MaxLength="Max" />
+    <Property Name="CurrentInvoiceCounter" Type="Edm.Int32" Nullable="false" />
+    <Property Name="CountryId" Type="Edm.String" Nullable="false" MaxLength="128" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" MaxLength="8" FixedLength="true" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="TraderOneContracts" Relationship="LightSwitchApplication.FK_Contracts_Traders_TraderOneId" ToRole="Contracts" FromRole="Traders" />
+    <NavigationProperty Name="TraderTwoContracts" Relationship="LightSwitchApplication.FK_Contracts_Traders_TraderTwoId" ToRole="Contracts" FromRole="Traders" />
+    <NavigationProperty Name="CreditCards" Relationship="LightSwitchApplication.FK_CreditCards_Traders_TraderId" ToRole="CreditCards" FromRole="Traders" />
+    <NavigationProperty Name="BuyerOrders" Relationship="LightSwitchApplication.FK_Orders_Traders_BuyerId" ToRole="Orders" FromRole="Traders" />
+    <NavigationProperty Name="TraderOrders" Relationship="LightSwitchApplication.FK_Orders_Traders_SellerId" ToRole="Orders" FromRole="Traders" />
+    <NavigationProperty Name="TraderRegistrationTokens" Relationship="LightSwitchApplication.FK_TraderRegistrationTokens_Traders_TraderId" ToRole="TraderRegistrationTokens" FromRole="Traders" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="100" ConcurrencyMode="Fixed" />
+    <Property Name="Login" Type="Edm.String" Nullable="false" MaxLength="30" ConcurrencyMode="Fixed" />
+    <Property Name="Password" Type="Edm.String" Nullable="false" MaxLength="128" ConcurrencyMode="Fixed" />
+    <Property Name="Email" Type="Edm.String" Nullable="false" MaxLength="150" ConcurrencyMode="Fixed" />
+    <Property Name="PhotoUrl" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <Property Name="GroupId" Type="Edm.String" Nullable="false" MaxLength="128" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="Group" Relationship="LightSwitchApplication.FK_Users_Groups_GroupId" ToRole="Groups" FromRole="Users" />
+    <NavigationProperty Name="UserConfigurationItems" Relationship="LightSwitchApplication.FK_UserConfigurationItems_Users_UserId" ToRole="UserConfigurationItems" FromRole="Users" />
+  </EntityType>
+  <EntityType Name="TraderRegistrationToken">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreateDate" Type="Edm.DateTime" Nullable="false" Precision="3" ConcurrencyMode="Fixed" />
+    <Property Name="Token" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <Property Name="TraderId" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="Trader" Relationship="LightSwitchApplication.FK_TraderRegistrationTokens_Traders_TraderId" ToRole="Traders" FromRole="TraderRegistrationTokens" />
+  </EntityType>
+  <EntityType Name="UserConfigurationItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <Property Name="Value" Type="Edm.String" MaxLength="Max" ConcurrencyMode="Fixed" />
+    <Property Name="UserId" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="User" Relationship="LightSwitchApplication.FK_UserConfigurationItems_Users_UserId" ToRole="Users" FromRole="UserConfigurationItems" />
+  </EntityType>
+  <Association Name="FK_Contracts_Instances_InstanceId">
+    <End Role="Instances" Type="LightSwitchApplication.Instance" Multiplicity="1" />
+    <End Role="Contracts" Type="LightSwitchApplication.Contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instances">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contracts">
+        <PropertyRef Name="InstanceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contracts_Traders_TraderOneId">
+    <End Role="Traders" Type="LightSwitchApplication.Trader" Multiplicity="1" />
+    <End Role="Contracts" Type="LightSwitchApplication.Contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Traders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contracts">
+        <PropertyRef Name="TraderOneId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contracts_Traders_TraderTwoId">
+    <End Role="Traders" Type="LightSwitchApplication.Trader" Multiplicity="1" />
+    <End Role="Contracts" Type="LightSwitchApplication.Contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Traders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contracts">
+        <PropertyRef Name="TraderTwoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CreditCards_Traders_TraderId">
+    <End Role="Traders" Type="LightSwitchApplication.Trader" Multiplicity="1" />
+    <End Role="CreditCards" Type="LightSwitchApplication.CreditCard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Traders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CreditCards">
+        <PropertyRef Name="TraderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderLineItems_Items_ItemId">
+    <End Role="Items" Type="LightSwitchApplication.Item" Multiplicity="1" />
+    <End Role="OrderLineItems" Type="LightSwitchApplication.OrderLineItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Items">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderLineItems">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderLineItems_Orders_OrderId">
+    <End Role="Orders" Type="LightSwitchApplication.Order" Multiplicity="1" />
+    <End Role="OrderLineItems" Type="LightSwitchApplication.OrderLineItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderLineItems">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Aircraft_AircraftId">
+    <End Role="Aircraft" Type="LightSwitchApplication.Aircraft" Multiplicity="0..1" />
+    <End Role="Orders" Type="LightSwitchApplication.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aircraft">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="AircraftId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Airports_LandingAirportId">
+    <End Role="Airports" Type="LightSwitchApplication.Airport" Multiplicity="0..1" />
+    <End Role="Orders" Type="LightSwitchApplication.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Airports">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="LandingAirportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Airports_TakeoffAirportId">
+    <End Role="Airports" Type="LightSwitchApplication.Airport" Multiplicity="0..1" />
+    <End Role="Orders" Type="LightSwitchApplication.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Airports">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="TakeoffAirportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Contracts_ContractId">
+    <End Role="Contracts" Type="LightSwitchApplication.Contract" Multiplicity="1" />
+    <End Role="Orders" Type="LightSwitchApplication.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contracts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="ContractId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Traders_BuyerId">
+    <End Role="Traders" Type="LightSwitchApplication.Trader" Multiplicity="1" />
+    <End Role="Orders" Type="LightSwitchApplication.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Traders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="BuyerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Traders_SellerId">
+    <End Role="Traders" Type="LightSwitchApplication.Trader" Multiplicity="1" />
+    <End Role="Orders" Type="LightSwitchApplication.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Traders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="SellerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Groups_GroupId">
+    <End Role="Groups" Type="LightSwitchApplication.Group" Multiplicity="1" />
+    <End Role="Users" Type="LightSwitchApplication.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TraderRegistrationTokens_Traders_TraderId">
+    <End Role="Traders" Type="LightSwitchApplication.Trader" Multiplicity="1" />
+    <End Role="TraderRegistrationTokens" Type="LightSwitchApplication.TraderRegistrationToken" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Traders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TraderRegistrationTokens">
+        <PropertyRef Name="TraderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserConfigurationItems_Users_UserId">
+    <End Role="Users" Type="LightSwitchApplication.User" Multiplicity="1" />
+    <End Role="UserConfigurationItems" Type="LightSwitchApplication.UserConfigurationItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserConfigurationItems">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AviTradeOLTPDataObjectContext" m:IsDefaultEntityContainer="true">
+    <EntitySet Name="Aircraft" EntityType="LightSwitchApplication.Aircraft" />
+    <EntitySet Name="Airports" EntityType="LightSwitchApplication.Airport" />
+    <EntitySet Name="Contracts" EntityType="LightSwitchApplication.Contract" />
+    <EntitySet Name="CreditCards" EntityType="LightSwitchApplication.CreditCard" />
+    <EntitySet Name="Groups" EntityType="LightSwitchApplication.Group" />
+    <EntitySet Name="Instances" EntityType="LightSwitchApplication.Instance" />
+    <EntitySet Name="Items" EntityType="LightSwitchApplication.Item" />
+    <EntitySet Name="OrderLineItems" EntityType="LightSwitchApplication.OrderLineItem" />
+    <EntitySet Name="Orders" EntityType="LightSwitchApplication.Order" />
+    <EntitySet Name="Traders" EntityType="LightSwitchApplication.Trader" />
+    <EntitySet Name="Users" EntityType="LightSwitchApplication.User" />
+    <EntitySet Name="TraderRegistrationTokens" EntityType="LightSwitchApplication.TraderRegistrationToken" />
+    <EntitySet Name="UserConfigurationItems" EntityType="LightSwitchApplication.UserConfigurationItem" />
+    <AssociationSet Name="FK_Contracts_Instances_InstanceId" Association="LightSwitchApplication.FK_Contracts_Instances_InstanceId">
+      <End Role="Instances" EntitySet="Instances" />
+      <End Role="Contracts" EntitySet="Contracts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contracts_Traders_TraderOneId" Association="LightSwitchApplication.FK_Contracts_Traders_TraderOneId">
+      <End Role="Traders" EntitySet="Traders" />
+      <End Role="Contracts" EntitySet="Contracts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contracts_Traders_TraderTwoId" Association="LightSwitchApplication.FK_Contracts_Traders_TraderTwoId">
+      <End Role="Traders" EntitySet="Traders" />
+      <End Role="Contracts" EntitySet="Contracts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CreditCards_Traders_TraderId" Association="LightSwitchApplication.FK_CreditCards_Traders_TraderId">
+      <End Role="Traders" EntitySet="Traders" />
+      <End Role="CreditCards" EntitySet="CreditCards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderLineItems_Items_ItemId" Association="LightSwitchApplication.FK_OrderLineItems_Items_ItemId">
+      <End Role="Items" EntitySet="Items" />
+      <End Role="OrderLineItems" EntitySet="OrderLineItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderLineItems_Orders_OrderId" Association="LightSwitchApplication.FK_OrderLineItems_Orders_OrderId">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="OrderLineItems" EntitySet="OrderLineItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Aircraft_AircraftId" Association="LightSwitchApplication.FK_Orders_Aircraft_AircraftId">
+      <End Role="Aircraft" EntitySet="Aircraft" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Airports_LandingAirportId" Association="LightSwitchApplication.FK_Orders_Airports_LandingAirportId">
+      <End Role="Airports" EntitySet="Airports" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Airports_TakeoffAirportId" Association="LightSwitchApplication.FK_Orders_Airports_TakeoffAirportId">
+      <End Role="Airports" EntitySet="Airports" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Contracts_ContractId" Association="LightSwitchApplication.FK_Orders_Contracts_ContractId">
+      <End Role="Contracts" EntitySet="Contracts" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Traders_BuyerId" Association="LightSwitchApplication.FK_Orders_Traders_BuyerId">
+      <End Role="Traders" EntitySet="Traders" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Traders_SellerId" Association="LightSwitchApplication.FK_Orders_Traders_SellerId">
+      <End Role="Traders" EntitySet="Traders" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Groups_GroupId" Association="LightSwitchApplication.FK_Users_Groups_GroupId">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TraderRegistrationTokens_Traders_TraderId" Association="LightSwitchApplication.FK_TraderRegistrationTokens_Traders_TraderId">
+      <End Role="Traders" EntitySet="Traders" />
+      <End Role="TraderRegistrationTokens" EntitySet="TraderRegistrationTokens" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserConfigurationItems_Users_UserId" Association="LightSwitchApplication.FK_UserConfigurationItems_Users_UserId">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserConfigurationItems" EntitySet="UserConfigurationItems" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

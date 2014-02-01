@@ -1,0 +1,155 @@
+﻿@using System.Web.Optimization
+@model Vimba.AviTrade.Web.Areas.Mebaa.ViewModels.OrdersMebaaExecutivesDashboardViewModel
+@{
+    ViewBag.Link = "home";
+    ViewBag.Title = "Mebaa Home";
+}
+
+<article>
+    <p class="left"><small>All amounts are shown in USD</small></p>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+     {
+        // TODO: There must be an easier way to deal with a drop down!!!! I just could not figure out the Html.DropDown helper.
+        <table>
+             <tr>
+                 <td>
+                     Select Time Slot:
+                 </td>
+                 <td>
+                     <select name="TimeSlotId">
+                         @foreach (var timeSlot in Model.TimeSlots)
+                         {
+                             var sel = "";
+                             if (timeSlot.Id == Model.SelectedTimeSlot.Id)
+                             {
+                                 sel = "selected";
+                             }
+
+                             <option value="@timeSlot.Id" @sel>@timeSlot.Name</option>
+                         }
+                     </select>     
+                 </td>
+                 <td>
+                     <input type="submit" value="Refresh" />
+                 </td>
+             </tr>             
+        </table>
+     }
+
+    <h5>Top Items</h5>
+    <table  class="datagrid" width="100%">
+        <tr>
+            <th>Category</th>
+            <th>Sub Category</th>
+            <th>Item</th>
+            <th width="60px">Count</th>
+            <th width="80px">Amount</th>
+            <th width="80px">AdminFee</th>
+        </tr>
+        @foreach (var item in Model.Dashboard.TopItems)
+        {
+            <tr>
+                <td align=''>@item.Category</td>
+                <td align=''>@item.SubCategory</td>
+                <td align=''>@item.Item</td>
+                <td align='center'>@item.Count</td>
+                <td align='right'>@string.Format("{0:#,###,##0.00}", @item.Amount)</td>
+                <td align='right'>@string.Format("{0:#,###,##0.00}", @item.AdminFee)</td>
+            </tr>
+        }
+    </table>                
+
+    <h5>Top Buyers - view the full list @Html.ActionLink("here", "TradersSummaries", "Home", new { area = "Mebaa" }, null)</h5>
+                <table width="100%"  class="datagrid">
+                    <tr>
+                        <th>Trader</th>                    
+                        <th width="60px">Orders</th>                    
+                        <th width="80px">Amount</th>                    
+                        <th width="80px">Admin Fee</th>                    
+                    </tr>
+                    @foreach (var partner in Model.Dashboard.TopBuyers)
+                    {
+                        <tr>
+                            <td align=''>@partner.Name</td>
+                            <td align='center'>@partner.Count</td>
+                            <td align='right'>@string.Format("{0:#,###,##0.00}", partner.Amount)</td>
+                            <td align='right'>@string.Format("{0:#,###,##0.00}", partner.AdminFee)</td>
+                        </tr>
+                    }
+                </table>                  
+                <h5>Top Sellers - view the full list @Html.ActionLink("here", "TradersSummaries", "Home", new { area = "Mebaa" }, null)</h5>
+                <table width="100%"  class="datagrid">
+                    <tr>
+                        <th>Trader</th>                    
+                        <th width="60px">Orders</th>                    
+                        <th width="80px">Amount</th>                    
+                        <th width="80px">Admin Fee</th>   
+                    </tr>
+                    @foreach (var partner in Model.Dashboard.TopSellers)
+                    {
+                        <tr>
+                            <td align=''>@partner.Name</td>
+                            <td align='center'>@partner.Count</td>
+                            <td align='right'>@string.Format("{0:#,###,##0.00}", partner.Amount)</td>
+                            <td align='right'>@string.Format("{0:#,###,##0.00}", partner.AdminFee)</td>
+                        </tr>
+                    }
+                </table>                
+
+    <h5>Orders by Status</h5>
+    <table  class="datagrid" width="100%">
+        <tr>
+            <th>Status</th>                    
+            <th width="60px">Orders</th>                    
+            <th width="80px">Amount</th>                    
+                        <th width="80px">Admin Fee</th>   
+            <th width="60px">Average Days</th>                    
+        </tr>
+        @foreach (var stat in Model.Dashboard.OrdersByStatus)
+        {
+            <tr>
+                <td align=''>@stat.Status</td>
+                <td align='center'>@stat.Count</td>
+                <td align='right'>@string.Format("{0:#,###,##0.00}", stat.Amount)</td>
+                <td align='right'>@string.Format("{0:#,###,##0.00}", stat.AdminFee)</td>
+                <td align='right'>@string.Format("{0:#,###,##0.00}", stat.AvgDays)</td>
+            </tr>
+        }
+    </table>                
+
+    <h5>Conversion Rate by Status</h5>
+    <table  class="datagrid" width="100%">
+        <tr>
+            <th>Status</th>                    
+            <th width="60px">Count</th>                    
+            <th width="60px">Total</th>                    
+            <th width="60px">Conversion Ratio</th>                    
+        </tr>
+        @foreach (var stat in Model.Dashboard.OrdersByConversionRates)
+        {
+            //TODO: The conversion rate is always 0!!!!
+            double ratio = 0.00;
+            if (Model.Dashboard.TotalOrders > 0)
+            {
+                ratio = ((Model.Dashboard.TotalOrders - stat.Count) / Model.Dashboard.TotalOrders) * 100;
+            }
+                        
+            <tr>
+                <td align=''>@stat.Status</td>
+                <td align='center'>@stat.Count</td>
+                <td align='center'>@Model.Dashboard.TotalOrders</td>
+                <td align='right'>@string.Format("{0:#,###,##0.00}", ratio) %</td>
+            </tr>
+        }
+    </table>                
+</article>
+
+<aside>
+    <h3>Useful Links</h3>
+    <ul>
+        <li>@Html.ActionLink("View About", "About", "Home", new { area = "" }, null)</li>
+        <li><a href="">Fill out an Online Enrollment Form</a></li>
+        <li><a href="">Request a Personal Presentation</a></li>
+        <li><a href="">Send us a Question</a></li>
+    </ul>
+</aside>

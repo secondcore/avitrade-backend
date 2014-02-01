@@ -1,0 +1,41 @@
+﻿<table class='controls'><tr>
+			   <td>
+					@if (Model.Page == 1)
+					{ 
+						<img class='first' src="~/Content/images/blank.png" alt=''/>
+					}
+					else
+					{ 
+						<a href="@Url.Action(ViewBag.Linkcontrol, new { id = ViewBag.LinkId })"><img class='first' src='~/Content/images/blank.png' title='First Page'/></a>
+					}
+				</td><td>
+					@if (Model.Page == 1)
+					{ 
+						<img class='prev' src="~/Content/images/blank.png" alt=''/>
+					}
+					else
+					{
+						<a href="@Url.Action(ViewBag.Linkcontrol, new { id = ViewBag.LinkId, page = Model.Page - 1 })"><img class='prev' src='~/Content/images/blank.png' title='Previous Page'/></a>
+					}
+				</td><td class='pages'>
+					Page @Model.Page of @Model.MaxPage
+				</td><td>
+					@if (Model.Page == Model.MaxPage)
+					{ 
+						<img class='next' src="~/Content/images/blank.png" alt=''/>
+					}
+					else
+					{
+						<a href="@Url.Action(ViewBag.Linkcontrol, new { id = ViewBag.LinkId, page = Model.Page + 1 })"><img class='next' src='~/Content/images/blank.png' title='Next Page'/></a>
+					}
+				</td><td>
+					@if (Model.Page == Model.MaxPage)
+					{ 
+						<img class='last' src="~/Content/images/blank.png" alt=''/>
+					}
+					else
+					{
+						<a href="@Url.Action(ViewBag.Linkcontrol, new { id = ViewBag.LinkId, page = Model.MaxPage })"><img class='last' src='~/Content/images/blank.png' title='Last Page'/></a>
+					}
+				</td>
+				</tr></table>

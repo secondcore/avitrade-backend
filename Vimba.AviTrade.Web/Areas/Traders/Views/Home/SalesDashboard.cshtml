@@ -1,0 +1,145 @@
+﻿@using System.Web.Optimization
+@model Vimba.AviTrade.Web.Areas.Traders.ViewModels.OrdersSalesDashboardViewModel
+@{
+    ViewBag.Link = "home";
+    ViewBag.Title = "Traders Home";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                @Html.Action("TraderDetail")
+            </hgroup>
+        </div>
+    </section>
+}
+
+<article>
+    @Html.ActionLink("Refresh", "Index", "Home", new { area = "Traders" }, null)
+    <h5>The 5 most recent orders submitted by me and waiting to be quoted</h5>
+    <table class='datagrid'>
+        <tr>
+            <th>
+                Order Id
+            </th>
+            <th>
+                Order Date
+            </th>
+            <th>
+                Seller
+            </th>
+            <th>
+                Items Count
+            </th>
+        </tr>
+
+        @foreach (var order in Model.SubmittedByMeAndWaitingToBeQuotedOrders)
+        {
+            <tr>
+                <td align='center'><a href="javascript:editOrder(@order.Id, false);">@order.Id</a></td>
+                <td align='center'>@order.OrderDate.ToString("dd MMM yyyy")</td>
+                <td align='center'>@order.Seller.Name</td>
+                <td align='center'>@order.LineItems.Count</td>
+            </tr>
+        }
+    </table>
+
+    <h5>The 5 most recent orders submitted by others and waiting on me to quote</h5>
+    <table class='datagrid'>
+        <tr>
+            <th>
+                Order Id
+            </th>
+            <th>
+                Order Date
+            </th>
+            <th>
+                Buyer
+            </th>
+            <th>
+                Items Count
+            </th>
+        </tr>
+
+        @foreach (var order in Model.SubmittedByOthersAndWaitingOnMeToQuote)
+        {
+            <tr>
+                <td align='center'><a href="javascript:editOrder(@order.Id, true);">@order.Id</a></td>
+                <td align='center'>@order.OrderDate.ToString("dd MMM yyyy")</td>
+                <td align='center'>@order.Buyer.Name</td>
+                <td align='center'>@order.LineItems.Count</td>
+            </tr>
+        }
+    </table>
+
+    <h5>The 5 most recent approved orders in which I am either a buyer or a seller</h5>
+    <table class='datagrid'>
+        <tr>
+            <th>
+                Order Id
+            </th>
+            <th>
+                Order Date
+            </th>
+            <th>
+                Quoted Date
+            </th>
+            <th>
+                Approved Date
+            </th>
+            <th>
+                Buyer
+            </th>
+            <th>
+                Seller
+            </th>
+            <th>
+                Amount ($)
+            </th>
+            <th>
+                Items Count
+            </th>
+        </tr>
+
+        @foreach (var order in Model.ApprovedOrdersByMeOrOthers)
+        {
+            double amount = 0;
+            if ((int)order.GlobalPivotExchangeRate != 0)
+            {
+                amount = order.Amount / order.GlobalPivotExchangeRate;
+            }
+
+            <tr>
+                <td align='center'><a href="javascript:viewOrder(@order.Id);">@order.Id</a></td>
+                <td align='center'>@order.OrderDate.ToString("dd MMM yyyy")</td>
+                <td align='center'>@order.QuotationDate.ToString("dd MMM yyyy")</td>
+                <td align='center'>@order.ApprovalDate.ToString("dd MMM yyyy")</td>
+                <td align='center'>@order.Buyer.Name</td>
+                <td align='center'>@order.Seller.Name</td>
+                <td align='right'>@string.Format("{0:#,###,##0.00}", amount)</td>
+                <td align='center'>@order.LineItems.Count</td>
+            </tr>
+        }
+    </table>
+</article>
+
+<aside>
+    <h3>Useful Links</h3>
+    <ul>
+        <li>@Html.ActionLink("View About", "About", "Home", new { area = "" }, null)</li>
+        <li><a href="">Fill out an Online Enrollment Form</a></li>
+        <li><a href="">Request a Personal Presentation</a></li>
+        <li><a href="">Send us a Question</a></li>
+    </ul>
+</aside>
+
+<script type="text/javascript">
+    function editOrder(id, isQuote) {
+        new AviTrader.CreateOrder({
+            orderId: id, quote: isQuote
+        });
+    }
+    function viewOrder(id) {
+        new AviTrader.ViewOrder({ orderId: id });
+    }
+</script>

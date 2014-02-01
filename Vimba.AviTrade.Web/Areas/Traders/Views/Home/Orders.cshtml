@@ -1,0 +1,34 @@
+﻿@using System.Web.Optimization
+@model Vimba.AviTrade.Models.Trader
+@{
+    ViewBag.Link = "orders";
+    ViewBag.Title = "Orders";
+
+    var langFile = "/Scripts/extjs/locale/ext-lang-en.js";
+}
+@section breadcrumbs {
+    <section id="breadcrumbs">
+        <ul>
+            <li>@Html.ActionLink("home", "Index", "Home", new { area = "Traders" }, null)</li>
+            <li>orders</li>
+        </ul>
+    </section>
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                @Html.Action("TraderDetail")
+            </hgroup>
+        </div>
+    </section>
+}
+
+<div class="order-listing">
+</div>
+
+<script type="text/javascript">
+    Ext.onReady(function () {
+        Ext.create('AviTrader.OrdersList');
+    });
+</script>

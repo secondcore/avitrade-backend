@@ -1,0 +1,12 @@
+﻿<OutOfBrowserSettings ShortName="Vimba.AviTrade.LightSwitch" EnableGPUAcceleration="False" ShowInstallMenuItem="False">
+  <OutOfBrowserSettings.Blurb>Vimba.AviTrade.LightSwitch</OutOfBrowserSettings.Blurb>
+  <OutOfBrowserSettings.WindowSettings>
+    <WindowSettings Title="Vimba.AviTrade.LightSwitch" Top="0" Left="0" WindowStartupLocation="Manual" />
+  </OutOfBrowserSettings.WindowSettings>
+  <OutOfBrowserSettings.SecuritySettings>
+    <SecuritySettings ElevatedPermissions="Required" />
+  </OutOfBrowserSettings.SecuritySettings>
+  <OutOfBrowserSettings.Icons>
+    <Icon Size="32,32">Resources/avitrade_icon-32.png</Icon>
+  </OutOfBrowserSettings.Icons>
+</OutOfBrowserSettings>

@@ -1,0 +1,15 @@
+﻿@model Vimba.AviTrade.Web.ViewModels.AjaxOrdersViewModel
+
+@{
+    ViewBag.Title = "RetrieveAjaxOrders";
+}
+
+<h2>RetrieveAjaxOrders</h2>
+
+<ol>
+    @foreach(var order in @Model.Items)
+    {
+        <li>@order.OrderDate</li>    
+    }
+</ol>
+

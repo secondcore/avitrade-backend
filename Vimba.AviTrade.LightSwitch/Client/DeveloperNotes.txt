@@ -1,0 +1,13 @@
+﻿* Conditional Formatting - difficult...it will requires custom grid. Although there is something called FontStyle property in Text Labels. 
+If the FontStyle is set to 'Warning' for example, it is displayed as RED.
+* Disable grid search and pagination - it requires custom grid. Actually you can turn off the pagination and search if you select the query in the Screen designer.
+* Icon and Logo are part of resources (DONE)
+* Deployment to Azure and Web is really nice!
+* Expired Contracts
+* Year to Date
+* FindControl is used in the screen code (DONE)
+* Extra Menu Items
+* Extra menu Items for Users Control
+* AviTrade Home to show Admin Fee, Export/Import of Master Items List
+* Search for the TODO Items
+* The search screens that have combo boxes are a little frustrating to build. They require double bound parameters.

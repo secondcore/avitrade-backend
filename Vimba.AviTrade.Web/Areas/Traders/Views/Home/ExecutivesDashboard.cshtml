@@ -1,0 +1,187 @@
+﻿@using System.Web.Optimization
+@model Vimba.AviTrade.Web.Areas.Traders.ViewModels.OrdersExecutivesDashboardViewModel
+@{
+    ViewBag.Link = "home";
+    ViewBag.Title = "Traders Home";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                @Html.Action("TraderDetail")
+            </hgroup>
+        </div>
+    </section>
+}
+
+<article>
+    <p class="left"><small>All amounts are shown in USD</small></p>
+    @using (Html.BeginForm("ExecutivesDashboard", "Home", FormMethod.Post))
+     {
+        // TODO: There must be an easier way to deal with a drop down!!!! I just could not figure out the Html.DropDown helper.
+        <table>
+             <tr>
+                 <td>
+                     Select Time Slot:
+                 </td>
+                 <td>
+                     <select name="TimeSlotId">
+                         @foreach (var timeSlot in Model.TimeSlots)
+                         {
+                             var sel = "";
+                             if (timeSlot.Id == Model.SelectedTimeSlot.Id)
+                             {
+                                 sel = "selected";
+                             }
+
+                             <option value="@timeSlot.Id" @sel>@timeSlot.Name</option>
+                         }
+                     </select>     
+                 </td>
+                 <td>
+                     <input type="submit" value="Refresh" />
+                 </td>
+             </tr>             
+        </table>
+     }
+
+    <table width="100%"  class="feature-table">
+        <tr>
+            <td width="50%" valign="top">
+                <h3>As a Buyer</h3>
+                <h5>Top 3 Trading Partners</h5>
+                <table class='datagrid' width="100%">
+                    <tr>
+                        <th>Trading Partner</th>                    
+                        <th width="60px">Orders</th>                    
+                        <th width="80px">Amount</th>                    
+                    </tr>
+                    @foreach (var partner in Model.Dashboard.TopTradingPartnersAsBuyer)
+                    {
+                        <tr>
+                            <td align=''>@partner.Name</td>
+                            <td align='center'>@partner.Count</td>
+                            <td align='right'>@string.Format("{0:#,###,##0.00}", partner.Amount)</td>
+                        </tr>
+                    }
+                </table>                
+                <h5>Orders by Status</h5>
+                <table class='datagrid' width="100%">
+                    <tr>
+                        <th>Status</th>                    
+                        <th width="60px">Orders</th>                    
+                        <th width="80px">Amount</th>                    
+                        <th width="60px">Average Days</th>                    
+                    </tr>
+                    @foreach (var stat in Model.Dashboard.OrdersByStatusAsBuyer)
+                    {
+                        <tr>
+                            <td align=''>@stat.Status</td>
+                            <td align='center'>@stat.Count</td>
+                            <td align='right'>@string.Format("{0:#,###,##0.00}", stat.Amount)</td>
+                            <td align='right'>@string.Format("{0:#,###,##0.00}", stat.AvgDays)</td>
+                        </tr>
+                    }
+                </table>                
+                <h5>Conversion Rate by Status</h5>
+                <table class='datagrid' width="100%">
+                    <tr>
+                        <th>Status</th>                    
+                        <th width="60px">Count</th>                    
+                        <th width="60px">Total</th>                    
+                        <th width="60px">Conversion Ratio</th>                    
+                    </tr>
+                    @foreach (var stat in Model.Dashboard.OrdersByConversionRateAsBuyer)
+                    {
+                        //TODO: The conversion rate is always 0!!!!
+                        double ratio = 0.00;
+                        if (Model.Dashboard.TotalOrdersAsBuyer > 0)
+                        {
+                            ratio = ((Model.Dashboard.TotalOrdersAsBuyer - stat.Count) / Model.Dashboard.TotalOrdersAsBuyer) * 100;
+                        }
+                        
+                        <tr>
+                            <td align=''>@stat.Status</td>
+                            <td align='center'>@stat.Count</td>
+                            <td align='center'>@Model.Dashboard.TotalOrdersAsBuyer</td>
+                            <td align='right'>@string.Format("{0:#,###,##0.00}", ratio) %</td>
+                        </tr>
+                    }
+                </table>                
+            </td>
+            <td width="50%" valign="top">
+                <h3>As a Seller</h3>
+                <h5>Top 3 Trading Partners</h5>
+                <table class='datagrid' width="100%">
+                    <tr>
+                        <th>Trading Partner</th>                    
+                        <th width="60px">Orders</th>                    
+                        <th width="80px">Amount</th>                    
+                    </tr>
+                    @foreach (var partner in Model.Dashboard.TopTradingPartnersAsSeller)
+                    {
+                        <tr>
+                            <td align=''>@partner.Name</td>
+                            <td align='center'>@partner.Count</td>
+                            <td align='right'>@string.Format("{0:#,###,##0.00}", partner.Amount)</td>
+                        </tr>
+                    }
+                </table>                
+                <h5>Orders by Status</h5>
+                <table class='datagrid' width="100%">
+                    <tr>
+                        <th>Status</th>                    
+                        <th width="60px">Orders</th>                    
+                        <th width="80px">Amount</th>                    
+                        <th width="60px">Average Days</th>                    
+                    </tr>
+                    @foreach (var stat in Model.Dashboard.OrdersByStatusAsSeller)
+                    {
+                        <tr>
+                            <td align=''>@stat.Status</td>
+                            <td align='center'>@stat.Count</td>
+                            <td align='right'>@string.Format("{0:#,###,##0.00}", stat.Amount)</td>
+                            <td align='right'>@string.Format("{0:#,###,##0.00}", stat.AvgDays)</td>
+                        </tr>
+                    }
+                </table>                
+                <h5>Conversion Rate by Status</h5>
+                <table class='datagrid' width="100%">
+                    <tr>
+                        <th>Status</th>                    
+                        <th width="60px">Count</th>                    
+                        <th width="60px">Total</th>                    
+                        <th width="60px">Conversion Ratio</th>                    
+                    </tr>
+                    @foreach (var stat in Model.Dashboard.OrdersByConversionRateAsSeller)
+                    {
+                        //TODO: The conversion rate is always 0!!!!
+                        double ratio = 0.00;
+                        if (Model.Dashboard.TotalOrdersAsSeller > 0)
+                        {
+                            ratio = ((Model.Dashboard.TotalOrdersAsSeller - stat.Count) / Model.Dashboard.TotalOrdersAsSeller) * 100;
+                        }
+                        
+                        <tr>
+                            <td align=''>@stat.Status</td>
+                            <td align='center'>@stat.Count</td>
+                            <td align='center'>@Model.Dashboard.TotalOrdersAsSeller</td>
+                            <td align='right'>@string.Format("{0:#,###,##0.00}", ratio) %</td>
+                        </tr>
+                    }
+                </table>                
+            </td>
+        </tr>
+    </table>
+</article>
+
+<aside>
+    <h3>Useful Links</h3>
+    <ul>
+        <li>@Html.ActionLink("View About", "About", "Home", new { area = "" }, null)</li>
+        <li><a href="">Fill out an Online Enrollment Form</a></li>
+        <li><a href="">Request a Personal Presentation</a></li>
+        <li><a href="">Send us a Question</a></li>
+    </ul>
+</aside>
+

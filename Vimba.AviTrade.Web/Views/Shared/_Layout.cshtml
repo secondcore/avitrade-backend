@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - AviTrade</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/themes/base/css", "~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+
+        <!--[if gte IE 9]>
+          <style type="text/css">
+            .gradient {
+               filter: none;
+            }
+          </style>
+        <![endif]-->
+    </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-right">
+                    <section id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>
+                    <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink("home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("features", "Features", "Home")</li>
+                            <li>@Html.ActionLink("about", "About", "Home")</li>
+                            <li>@Html.ActionLink("contact", "Contact", "Home")</li>
+                        </ul>
+                    </nav>
+                </div>
+                <div>
+                    <p class="site-title">@Html.ActionLink("                 ", "Index", "Home")</p>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+			@RenderSection("breadcrumbs", required: false)
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+					<p>&copy; @DateTime.Now.Year - Vimba AviTrade</p>
+                </div>
+                <div class="float-right">
+                    <ul id="social">
+                        <li><a href="http://facebook.com" class="facebook" title="Follow us on Facebook™">Facebook</a></li>
+                        <li><a href="http://twitter.com" class="twitter" title="Follow us on Twitter™">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+		@Scripts.Render("~/bundles/jquery")
+		@Scripts.Render("~/bundles/jqueryui")
+		@Scripts.Render("~/bundles/avitrade")
+		@RenderSection("scripts", false)
+    </body>
+</html>

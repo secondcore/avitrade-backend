@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<ModelDocumentManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Documents>
+    <Document FullPath="D:\Work\sourcecode\current\netsolutions\2ndCore\AviTrade\Src\Vimba.AviTrade.LightSwitch\Client\Properties\Client.lsml" Checksum="7340AC7835E65E799939C7ECD1A1E0D5903151716B05E016E419A328EF13F914" />
+    <Document FullPath="D:\Work\sourcecode\current\netsolutions\2ndCore\AviTrade\Src\Vimba.AviTrade.LightSwitch\Common\Properties\Common.lsml" Checksum="D14CE6AF478699B17EC1A1F3A963BCAB5D43401AFA27A18BCBB841A6E27F494B" />
+  </Documents>
+</ModelDocumentManifest>

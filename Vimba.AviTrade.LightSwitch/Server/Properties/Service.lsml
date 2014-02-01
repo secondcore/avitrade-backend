@@ -1,0 +1,1125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModelFragment xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication
+    Name="LightSwitchServiceApplication"
+    Version="1.0.0.0">
+    <ServiceApplication.Attributes>
+      <ModuleNamespace
+        Namespace="LightSwitchApplication" />
+    </ServiceApplication.Attributes>
+  </ServiceApplication>
+  <DataService
+    DataProvider="EntityFrameworkDataProvider"
+    EntityContainer="LightSwitchCommonModule:AviTradeOLTPData"
+    Name="AviTradeOLTPDataDataService">
+    <DataService.ConnectionProperties>
+      <ConnectionProperty
+        Name="DataProviderName"
+        Value="91510608-8809-4020-8897-fba057e22d54" />
+      <ConnectionProperty
+        Name="DataSourceName"
+        Value="067ea0d9-ba62-43f7-9106-34930c60c528" />
+      <ConnectionProperty
+        Name="ProviderInvariantName"
+        Value="System.Data.SqlClient" />
+      <ConnectionProperty
+        Name="SafeConnectionString"
+        Value="Data Source=.;Initial Catalog=AviTrade;Integrated Security=True" />
+      <ConnectionProperty
+        Name="ConnectionStringGuid"
+        Value="439cd108-a542-4665-b7c6-0f9de3328ab1" />
+      <ConnectionProperty
+        Name="ProviderManifestToken"
+        Value="2008" />
+    </DataService.ConnectionProperties>
+    <EntitySetMapping
+      EntitySet="Aircraft">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Aircraft" />
+        <SsdlProperty
+          Name="Id"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Aircraft/Properties[Id]"
+          StoreGeneratedPattern="Identity"
+          Type="int" />
+        <SsdlProperty
+          Name="Manufacturer"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Aircraft/Properties[Manufacturer]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="Model"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Aircraft/Properties[Model]"
+          Type="nvarchar(max)" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <EntitySetMapping
+      EntitySet="Airports">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Airports" />
+        <SsdlProperty
+          Name="Id"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Airport/Properties[Id]"
+          StoreGeneratedPattern="Identity"
+          Type="int" />
+        <SsdlProperty
+          Name="Name"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Airport/Properties[Name]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="Description"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Airport/Properties[Description]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="City"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Airport/Properties[City]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          MaxLength="128"
+          Name="CountryId"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Airport/Properties[CountryId]"
+          Type="nvarchar" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <EntitySetMapping
+      EntitySet="Contracts">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Contracts" />
+        <SsdlProperty
+          Name="Id"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Contract/Properties[Id]"
+          StoreGeneratedPattern="Identity"
+          Type="int" />
+        <SsdlProperty
+          Name="RowVersion"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Contract/Properties[RowVersion]"
+          StoreGeneratedPattern="Computed"
+          Type="timestamp" />
+        <SsdlProperty
+          Name="CreateDate"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Contract/Properties[CreateDate]"
+          Type="datetime" />
+        <SsdlProperty
+          Name="Name"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Contract/Properties[Name]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="Description"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Contract/Properties[Description]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="StartDate"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Contract/Properties[StartDate]"
+          Type="datetime" />
+        <SsdlProperty
+          Name="EndDate"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Contract/Properties[EndDate]"
+          Type="datetime" />
+        <SsdlProperty
+          Name="TraderOneApprovalDate"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Contract/Properties[TraderOneApprovalDate]"
+          Type="datetime" />
+        <SsdlProperty
+          Name="TraderTwoApprovalDate"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Contract/Properties[TraderTwoApprovalDate]"
+          Type="datetime" />
+        <SsdlProperty
+          Name="IsTraderOneApproved"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Contract/Properties[IsTraderOneApproved]"
+          Type="bit" />
+        <SsdlProperty
+          Name="IsTraderTwoApproved"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Contract/Properties[IsTraderTwoApproved]"
+          Type="bit" />
+        <SsdlProperty
+          MaxLength="128"
+          Name="BillingCurrencyId"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Contract/Properties[BillingCurrencyId]"
+          Type="nvarchar" />
+        <SsdlProperty
+          Name="TimeZoneId"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Contract/Properties[TimeZoneId]"
+          Type="int" />
+        <SsdlForeignKeyProperty
+          Name="InstanceId"
+          Nullable="False"
+          PropertyName="InstanceId"
+          Type="int" />
+        <SsdlForeignKeyProperty
+          Name="TraderOneId"
+          Nullable="False"
+          PropertyName="TraderOneId"
+          Type="int" />
+        <SsdlForeignKeyProperty
+          Name="TraderTwoId"
+          Nullable="False"
+          PropertyName="TraderTwoId"
+          Type="int" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <EntitySetMapping
+      EntitySet="CreditCards">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="CreditCards" />
+        <SsdlProperty
+          Name="Id"
+          Nullable="False"
+          Property="LightSwitchCommonModule:CreditCard/Properties[Id]"
+          StoreGeneratedPattern="Identity"
+          Type="int" />
+        <SsdlProperty
+          Name="RowVersion"
+          Nullable="False"
+          Property="LightSwitchCommonModule:CreditCard/Properties[RowVersion]"
+          StoreGeneratedPattern="Computed"
+          Type="timestamp" />
+        <SsdlProperty
+          Name="HolderName"
+          Nullable="True"
+          Property="LightSwitchCommonModule:CreditCard/Properties[HolderName]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="CardNumber"
+          Nullable="True"
+          Property="LightSwitchCommonModule:CreditCard/Properties[CardNumber]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="ExpDate"
+          Nullable="True"
+          Property="LightSwitchCommonModule:CreditCard/Properties[ExpDate]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="SecurityCode"
+          Nullable="True"
+          Property="LightSwitchCommonModule:CreditCard/Properties[SecurityCode]"
+          Type="nvarchar(max)" />
+        <SsdlForeignKeyProperty
+          Name="TraderId"
+          Nullable="False"
+          PropertyName="TraderId"
+          Type="int" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <EntitySetMapping
+      EntitySet="Groups">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Groups" />
+        <SsdlProperty
+          MaxLength="128"
+          Name="Id"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Group/Properties[Id]"
+          Type="nvarchar" />
+        <SsdlProperty
+          Name="RowVersion"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Group/Properties[RowVersion]"
+          StoreGeneratedPattern="Computed"
+          Type="timestamp" />
+        <SsdlProperty
+          Name="Name"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Group/Properties[Name]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="Description"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Group/Properties[Description]"
+          Type="nvarchar(max)" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <EntitySetMapping
+      EntitySet="Instances">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Instances" />
+        <SsdlProperty
+          Name="Id"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Instance/Properties[Id]"
+          StoreGeneratedPattern="Identity"
+          Type="int" />
+        <SsdlProperty
+          Name="RowVersion"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Instance/Properties[RowVersion]"
+          StoreGeneratedPattern="Computed"
+          Type="timestamp" />
+        <SsdlProperty
+          Name="Name"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Instance/Properties[Name]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="Description"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Instance/Properties[Description]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="Industry"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Instance/Properties[Industry]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="AdminFeePercentage"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Instance/Properties[AdminFeePercentage]"
+          Type="float" />
+        <SsdlProperty
+          MaxLength="128"
+          Name="PivotCurrencyId"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Instance/Properties[PivotCurrencyId]"
+          Type="nvarchar" />
+        <SsdlProperty
+          MaxLength="128"
+          Name="GlobalPivotCurrencyId"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Instance/Properties[GlobalPivotCurrencyId]"
+          Type="nvarchar" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <EntitySetMapping
+      EntitySet="Items">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Items" />
+        <SsdlProperty
+          Name="Id"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Item/Properties[Id]"
+          StoreGeneratedPattern="Identity"
+          Type="int" />
+        <SsdlProperty
+          Name="RowVersion"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Item/Properties[RowVersion]"
+          StoreGeneratedPattern="Computed"
+          Type="timestamp" />
+        <SsdlProperty
+          Name="Category"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Item/Properties[Category]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="SubCategory"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Item/Properties[SubCategory]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="Name"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Item/Properties[Name]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="Unit"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Item/Properties[Unit]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="Description"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Item/Properties[Description]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="ImageUrl"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Item/Properties[ImageUrl]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="Rating"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Item/Properties[Rating]"
+          Type="int" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <EntitySetMapping
+      EntitySet="OrderLineItems">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="OrderLineItems" />
+        <SsdlProperty
+          Name="Id"
+          Nullable="False"
+          Property="LightSwitchCommonModule:OrderLineItem/Properties[Id]"
+          StoreGeneratedPattern="Identity"
+          Type="int" />
+        <SsdlProperty
+          Name="FulfilmentDate"
+          Nullable="False"
+          Property="LightSwitchCommonModule:OrderLineItem/Properties[FulfilmentDate]"
+          Type="datetime" />
+        <SsdlProperty
+          Name="Units"
+          Nullable="False"
+          Property="LightSwitchCommonModule:OrderLineItem/Properties[Units]"
+          Type="int" />
+        <SsdlProperty
+          Name="PricePerUnit"
+          Nullable="False"
+          Property="LightSwitchCommonModule:OrderLineItem/Properties[PricePerUnit]"
+          Type="float" />
+        <SsdlProperty
+          Name="Amount"
+          Nullable="False"
+          Property="LightSwitchCommonModule:OrderLineItem/Properties[Amount]"
+          Type="float" />
+        <SsdlProperty
+          Name="AdminFee"
+          Nullable="False"
+          Property="LightSwitchCommonModule:OrderLineItem/Properties[AdminFee]"
+          Type="float" />
+        <SsdlProperty
+          Name="PivotExchangeRate"
+          Nullable="False"
+          Property="LightSwitchCommonModule:OrderLineItem/Properties[PivotExchangeRate]"
+          Type="float" />
+        <SsdlProperty
+          Name="GlobalPivotExchangeRate"
+          Nullable="False"
+          Property="LightSwitchCommonModule:OrderLineItem/Properties[GlobalPivotExchangeRate]"
+          Type="float" />
+        <SsdlProperty
+          MaxLength="128"
+          Name="CurrencyId"
+          Nullable="False"
+          Property="LightSwitchCommonModule:OrderLineItem/Properties[CurrencyId]"
+          Type="nvarchar" />
+        <SsdlForeignKeyProperty
+          Name="ItemId"
+          Nullable="False"
+          PropertyName="ItemId"
+          Type="int" />
+        <SsdlForeignKeyProperty
+          Name="OrderId"
+          Nullable="False"
+          PropertyName="OrderId"
+          Type="int" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <EntitySetMapping
+      EntitySet="Orders">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Orders" />
+        <SsdlProperty
+          Name="Id"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Order/Properties[Id]"
+          StoreGeneratedPattern="Identity"
+          Type="int" />
+        <SsdlProperty
+          Name="OrderDate"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Order/Properties[OrderDate]"
+          Type="datetime" />
+        <SsdlProperty
+          Name="QuotationDate"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Order/Properties[QuotationDate]"
+          Type="datetime" />
+        <SsdlProperty
+          Name="IsQuoted"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Order/Properties[IsQuoted]"
+          Type="bit" />
+        <SsdlProperty
+          Name="ApprovalDate"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Order/Properties[ApprovalDate]"
+          Type="datetime" />
+        <SsdlProperty
+          Name="IsApproved"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Order/Properties[IsApproved]"
+          Type="bit" />
+        <SsdlProperty
+          Name="FulfilmentDate"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Order/Properties[FulfilmentDate]"
+          Type="datetime" />
+        <SsdlProperty
+          Name="IsFulfilled"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Order/Properties[IsFulfilled]"
+          Type="bit" />
+        <SsdlProperty
+          Name="Status"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Order/Properties[Status]"
+          Type="int" />
+        <SsdlProperty
+          Name="Amount"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Order/Properties[Amount]"
+          Type="float" />
+        <SsdlProperty
+          Name="PivotExchangeRate"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Order/Properties[PivotExchangeRate]"
+          Type="float" />
+        <SsdlProperty
+          Name="GlobalPivotExchangeRate"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Order/Properties[GlobalPivotExchangeRate]"
+          Type="float" />
+        <SsdlProperty
+          Name="AdminFee"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Order/Properties[AdminFee]"
+          Type="float" />
+        <SsdlProperty
+          Name="BuyerCardHolderName"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Order/Properties[BuyerCardHolderName]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="BuyerCardNumber"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Order/Properties[BuyerCardNumber]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="BuyerCardExpDate"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Order/Properties[BuyerCardExpDate]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="BuyerCardSecurityCode"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Order/Properties[BuyerCardSecurityCode]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="BuyerPaypalUserId"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Order/Properties[BuyerPaypalUserId]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="BuyerPaypalPassword"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Order/Properties[BuyerPaypalPassword]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="BuyerReferenceNumber"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Order/Properties[BuyerReferenceNumber]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="SellerCardHolderName"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Order/Properties[SellerCardHolderName]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="SellerCardNumber"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Order/Properties[SellerCardNumber]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="SellerCardExpDate"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Order/Properties[SellerCardExpDate]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="SellerCardSecurityCode"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Order/Properties[SellerCardSecurityCode]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="SellerPaypalUserId"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Order/Properties[SellerPaypalUserId]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="SellerPaypalPassword"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Order/Properties[SellerPaypalPassword]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="SellerReferenceNumber"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Order/Properties[SellerReferenceNumber]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="Operator"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Order/Properties[Operateur]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="FlightNumber"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Order/Properties[FlightNumber]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="EstimatedTakeoffTime"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Order/Properties[EstimatedTakeoffTime]"
+          Type="datetime" />
+        <SsdlProperty
+          Name="EstimatedLandingTime"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Order/Properties[EstimatedLandingTime]"
+          Type="datetime" />
+        <SsdlForeignKeyProperty
+          Name="AircraftId"
+          Nullable="True"
+          PropertyName="AircraftId"
+          Type="int" />
+        <SsdlForeignKeyProperty
+          Name="LandingAirportId"
+          Nullable="True"
+          PropertyName="LandingAirportId"
+          Type="int" />
+        <SsdlForeignKeyProperty
+          Name="TakeoffAirportId"
+          Nullable="True"
+          PropertyName="TakeoffAirportId"
+          Type="int" />
+        <SsdlForeignKeyProperty
+          Name="ContractId"
+          Nullable="False"
+          PropertyName="ContractId"
+          Type="int" />
+        <SsdlForeignKeyProperty
+          Name="BuyerId"
+          Nullable="False"
+          PropertyName="BuyerId"
+          Type="int" />
+        <SsdlForeignKeyProperty
+          Name="SellerId"
+          Nullable="False"
+          PropertyName="SellerId"
+          Type="int" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <EntitySetMapping
+      EntitySet="TraderRegistrationTokens">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="TraderRegistrationTokens" />
+        <SsdlProperty
+          Name="Id"
+          Nullable="False"
+          Property="LightSwitchCommonModule:TraderRegistrationToken/Properties[Id]"
+          StoreGeneratedPattern="Identity"
+          Type="int" />
+        <SsdlProperty
+          Name="CreateDate"
+          Nullable="False"
+          Property="LightSwitchCommonModule:TraderRegistrationToken/Properties[CreateDate]"
+          Type="datetime" />
+        <SsdlProperty
+          Name="Token"
+          Nullable="True"
+          Property="LightSwitchCommonModule:TraderRegistrationToken/Properties[Token]"
+          Type="nvarchar(max)" />
+        <SsdlForeignKeyProperty
+          Name="TraderId"
+          Nullable="False"
+          PropertyName="TraderId"
+          Type="int" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <EntitySetMapping
+      EntitySet="Traders">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Traders" />
+        <SsdlProperty
+          Name="Id"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Trader/Properties[Id]"
+          StoreGeneratedPattern="Identity"
+          Type="int" />
+        <SsdlProperty
+          Name="RowVersion"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Trader/Properties[RowVersion]"
+          StoreGeneratedPattern="Computed"
+          Type="timestamp" />
+        <SsdlProperty
+          Name="Account"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Trader/Properties[Account]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="Name"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Trader/Properties[Name]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="Address"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Trader/Properties[Address]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="Address2"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Trader/Properties[Address2]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="City"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Trader/Properties[City]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="Phone"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Trader/Properties[Phone]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="Email"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Trader/Properties[Email]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="Contact"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Trader/Properties[Contact]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="Fax"
+          Nullable="True"
+          Property="LightSwitchCommonModule:Trader/Properties[Fax]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="CurrentInvoiceCounter"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Trader/Properties[CurrentInvoiceCounter]"
+          Type="int" />
+        <SsdlProperty
+          MaxLength="128"
+          Name="CountryId"
+          Nullable="False"
+          Property="LightSwitchCommonModule:Trader/Properties[CountryId]"
+          Type="nvarchar" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <EntitySetMapping
+      EntitySet="UserConfigurationItems">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="UserConfigurationItems" />
+        <SsdlProperty
+          Name="Id"
+          Nullable="False"
+          Property="LightSwitchCommonModule:UserConfigurationItem/Properties[Id]"
+          StoreGeneratedPattern="Identity"
+          Type="int" />
+        <SsdlProperty
+          Name="Key"
+          Nullable="True"
+          Property="LightSwitchCommonModule:UserConfigurationItem/Properties[Key]"
+          Type="nvarchar(max)" />
+        <SsdlProperty
+          Name="Value"
+          Nullable="True"
+          Property="LightSwitchCommonModule:UserConfigurationItem/Properties[Value]"
+          Type="nvarchar(max)" />
+        <SsdlForeignKeyProperty
+          Name="UserId"
+          Nullable="False"
+          PropertyName="UserId"
+          Type="int" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <EntitySetMapping
+      EntitySet="Users">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Users" />
+        <SsdlProperty
+          Name="Id"
+          Nullable="False"
+          Property="LightSwitchCommonModule:User/Properties[Id]"
+          StoreGeneratedPattern="Identity"
+          Type="int" />
+        <SsdlProperty
+          MaxLength="100"
+          Name="Name"
+          Nullable="False"
+          Property="LightSwitchCommonModule:User/Properties[Name]"
+          Type="nvarchar" />
+        <SsdlProperty
+          MaxLength="30"
+          Name="Login"
+          Nullable="False"
+          Property="LightSwitchCommonModule:User/Properties[Login]"
+          Type="nvarchar" />
+        <SsdlProperty
+          MaxLength="128"
+          Name="Password"
+          Nullable="False"
+          Property="LightSwitchCommonModule:User/Properties[Password]"
+          Type="nvarchar" />
+        <SsdlProperty
+          MaxLength="150"
+          Name="Email"
+          Nullable="False"
+          Property="LightSwitchCommonModule:User/Properties[Email]"
+          Type="nvarchar" />
+        <SsdlProperty
+          Name="PhotoUrl"
+          Nullable="True"
+          Property="LightSwitchCommonModule:User/Properties[PhotoUrl]"
+          Type="nvarchar(max)" />
+        <SsdlForeignKeyProperty
+          MaxLength="128"
+          Name="GroupId"
+          Nullable="False"
+          PropertyName="GroupId"
+          Type="nvarchar" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Contracts_Instances_InstanceId">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Contracts_Instances_InstanceId" />
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_Contracts_Instances_InstanceId]/Members[Instances]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_Contracts_Instances_InstanceId]/Members[Contracts]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="InstanceId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Contracts_Traders_TraderOneId">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Contracts_Traders_TraderOneId" />
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_Contracts_Traders_TraderOneId]/Members[Traders]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_Contracts_Traders_TraderOneId]/Members[Contracts]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="TraderOneId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Contracts_Traders_TraderTwoId">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Contracts_Traders_TraderTwoId" />
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_Contracts_Traders_TraderTwoId]/Members[Traders]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_Contracts_Traders_TraderTwoId]/Members[Contracts]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="TraderTwoId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_CreditCards_Traders_TraderId">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_CreditCards_Traders_TraderId" />
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_CreditCards_Traders_TraderId]/Members[Traders]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_CreditCards_Traders_TraderId]/Members[CreditCards]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="TraderId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_OrderLineItems_Items_ItemId">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_OrderLineItems_Items_ItemId" />
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_OrderLineItems_Items_ItemId]/Members[Items]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_OrderLineItems_Items_ItemId]/Members[OrderLineItems]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ItemId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_OrderLineItems_Orders_OrderId">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_OrderLineItems_Orders_OrderId" />
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_OrderLineItems_Orders_OrderId]/Members[Orders]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_OrderLineItems_Orders_OrderId]/Members[OrderLineItems]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="OrderId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Orders_Aircraft_AircraftId">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Orders_Aircraft_AircraftId" />
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_Orders_Aircraft_AircraftId]/Members[Aircraft]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_Orders_Aircraft_AircraftId]/Members[Orders]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="AircraftId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Orders_Airports_LandingAirportId">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Orders_Airports_LandingAirportId" />
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_Orders_Airports_LandingAirportId]/Members[Airports]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_Orders_Airports_LandingAirportId]/Members[Orders]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="LandingAirportId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Orders_Airports_TakeoffAirportId">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Orders_Airports_TakeoffAirportId" />
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_Orders_Airports_TakeoffAirportId]/Members[Airports]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_Orders_Airports_TakeoffAirportId]/Members[Orders]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="TakeoffAirportId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Orders_Contracts_ContractId">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Orders_Contracts_ContractId" />
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_Orders_Contracts_ContractId]/Members[Contracts]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_Orders_Contracts_ContractId]/Members[Orders]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ContractId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Orders_Traders_BuyerId">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Orders_Traders_BuyerId" />
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_Orders_Traders_BuyerId]/Members[Traders]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_Orders_Traders_BuyerId]/Members[Orders]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="BuyerId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Orders_Traders_SellerId">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Orders_Traders_SellerId" />
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_Orders_Traders_SellerId]/Members[Traders]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_Orders_Traders_SellerId]/Members[Orders]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="SellerId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_TraderRegistrationTokens_Traders_TraderId">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_TraderRegistrationTokens_Traders_TraderId" />
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_TraderRegistrationTokens_Traders_TraderId]/Members[Traders]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_TraderRegistrationTokens_Traders_TraderId]/Members[TraderRegistrationTokens]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="TraderId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_UserConfigurationItems_Users_UserId">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_UserConfigurationItems_Users_UserId" />
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_UserConfigurationItems_Users_UserId]/Members[Users]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_UserConfigurationItems_Users_UserId]/Members[UserConfigurationItems]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="UserId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Users_Groups_GroupId">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Users_Groups_GroupId" />
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_Users_Groups_GroupId]/Members[Groups]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:AviTradeOLTPData/Members[FK_Users_Groups_GroupId]/Members[Users]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="GroupId" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ModelFragment>

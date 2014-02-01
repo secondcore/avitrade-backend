@@ -1,0 +1,87 @@
+﻿@using System.Web.Optimization
+@model Vimba.AviTrade.Web.Areas.Mebaa.ViewModels.MebaaTradersSummariesViewModel
+@{
+    ViewBag.Link = "traders";
+    ViewBag.Title = "Mebaa Traders Summaries";
+}
+
+<article>
+    <p class="left"><small>All amounts are shown in USD</small></p>
+    @using (Html.BeginForm("TradersSummaries", "Home", FormMethod.Post))
+     {
+        // TODO: There must be an easier way to deal with a drop down!!!! I just could not figure out the Html.DropDown helper.
+        <table>
+             <tr>
+                 <td>
+                     Select Time Slot:
+                 </td>
+                 <td>
+                     <select name="TimeSlotId">
+                         @foreach (var timeSlot in Model.TimeSlots)
+                         {
+                             var sel = "";
+                             if (timeSlot.Id == Model.SelectedTimeSlot.Id)
+                             {
+                                 sel = "selected";
+                             }
+
+                             <option value="@timeSlot.Id" @sel>@timeSlot.Name</option>
+                         }
+                     </select>     
+                 </td>
+                 <td>
+                     <input type="submit" value="Refresh" />
+                 </td>
+             </tr>             
+        </table>
+     }
+    
+                <h5>Buyers</h5>
+                <table class="datagrid" width="100%">
+                    <tr>
+                        <th>Trader</th>                    
+                        <th width="60px">Orders</th>                    
+                        <th width="80px">Amount</th>                    
+                        <th width="80px">Admin Fee</th>                    
+                    </tr>
+                    @foreach (var partner in Model.Summaries.Buyers)
+                    {
+                        <tr>
+                            <td align=''>@partner.Name</td>
+                            <td align='center'>@partner.Orders</td>
+                            <td align='right'>@string.Format("{0:#,###,##0.00}", partner.Amount)</td>
+                            <td align='right'>@string.Format("{0:#,###,##0.00}", partner.AdminFee)</td>
+                        </tr>
+                    }
+                </table>                
+
+                <h5>Sellers</h5>
+                <table class="datagrid" width="100%">
+                    <tr>
+                        <th>Trader</th>                    
+                        <th width="60px">Orders</th>                    
+                        <th width="80px">Amount</th>                    
+                        <th width="80px">Admin Fee</th>                    
+                    </tr>
+                    @foreach (var partner in Model.Summaries.Sellers)
+                    {
+                        <tr>
+                            <td align=''>@partner.Name</td>
+                            <td align='center'>@partner.Orders</td>
+                            <td align='right'>@string.Format("{0:#,###,##0.00}", partner.Amount)</td>
+                            <td align='right'>@string.Format("{0:#,###,##0.00}", partner.AdminFee)</td>
+                        </tr>
+                    }
+                </table>  
+
+</article>
+
+<aside>
+    <h3>Useful Links</h3>
+    <ul>
+        <li>@Html.ActionLink("View About", "About", "Home", new { area = "" }, null)</li>
+        <li><a href="">Fill out an Online Enrollment Form</a></li>
+        <li><a href="">Request a Personal Presentation</a></li>
+        <li><a href="">Send us a Question</a></li>
+    </ul>
+</aside>

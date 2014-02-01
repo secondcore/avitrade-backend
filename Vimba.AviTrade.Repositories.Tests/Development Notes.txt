@@ -1,0 +1,43 @@
+﻿* Regressible Harness
+* Living & Updated Documentation
+* Write with testability
+* How to categorize tests?
+* It seems that tests are run based on their alphabetical order or via an ordered list. But these are independent tests anyway so it is not important to run them in order. So 
+I am not really sure what the benefit if.
+* I want a way to run dependent tests where the output of one test method can feed the input of another!
+* A reasonale way to organize tests is to create a foloder for each. For example one folder would be OrderTests which will have the different Test Classes such as WhenCreateAnOrderTests.
+
+Nice Introduction:
+==================
+For most professional software developers, the word "Test" is normally (or, at least, for many years it was) associated with the painful process where a group of sadists (the "Test Team") subjects perfect software to unreasonable torture until it breaks. Whereupon, the Test Team gleefully report that the software is even less stable than the last time they tested it. So, "Test" is a word loaded with meaning, and thus taking a "test-driven" approach to development does not sound appealing.
+
+However, TDD should really have been termed Design by Example, which sounds much better (see the article It's Not TDD, It's Design By Example by Brad Wilson) and perhaps more accurately describes the approach. That said, TDD has become an accepted and well-recognised term, so we'll stick with it for the purposes of this article.
+
+Straight away we ought to state that TDD is not a testing methodology, it's a design and development methodology! TDD emphasises an iterative development cycle where requirements are created in the form of unit tests, and each test is written first - before the code that defines interfaces, services, business logic, or UI. Typically, for each work item (e.g. a particular new feature) the developer will use a three-phase (Red, Green, Refactor) cycle, with each cycle being of short duration (e.g. an hour):
+
+    Red: write a unit test that fails
+        First, make sure you understand the requirements for the work item
+        Design/imagine how you'd like the feature to be implemented, then write the test code as though the code existed
+        Create just the necessary interfaces and 'stubs' (or use a Mocking framework - see below) so the test code compiles
+        Run the test - it will fail because the 'real code' has not yet been written. However, this verifies our mocked code isn't working by accident, which could potentially provide a 'false positive' at a later stage in development
+
+    Green: make the minimum changes required to pass the test
+        add the minimum code required to make the test pass - make use of mocking or hard-code method return values
+        don't add error handling code - do this later, again driven by specific tests
+        re-run all unit tests (regression testing) to ensure you haven't broken anything
+
+    Refactor: improve design, add business and data persistence logic, etc.
+        gradualy replace stubbed or mocked code with real-world implementation logic
+        improve the design, etc.
+        re-run tests to ensure eveything still works
+
+It's interesting to note that this deceptively simple approach actually encapsulates a major change in the way we approach the task of writing software. Normally we ask the question, "How will I write the code to create the solution?". With TDD the question becomes, "How will I know I've solved the problem?". As J. Timothy King says in his article Twelve Benefits of Writing Unit Tests First: "We're taught to assume we already know how to tell whether our solution works. It's a non-question. Like indecency, we'll know it when we see it. We believe we don't actually need to think, before we write our code, about what it needs to do. This belief is so deeply ingrained, it's difficult for most of us to change."
+
+Assuming we as developers are able to make this mental shift in approach, what benefits are we likely to see?
+
+    Design: being able to run automated unit tests forces us up-front to design a system composed of loosely-coupled components (e.g. separation of concerns)
+    Reassurance: re-running the unit tests assures us that any change we make hasn't broken anything
+    Team-working: re-running all tests (e.g. at the end of the day) is a good way of picking up any breaking-changes at an early stage
+    Documentation: tests actually document how the system works (and they can't be out-of-date)
+    Metrics: tests provide a practical measure of progress (e.g. "the system passes 78 of 100 tests")
+

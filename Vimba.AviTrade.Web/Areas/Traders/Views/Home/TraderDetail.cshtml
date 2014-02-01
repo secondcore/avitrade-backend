@@ -1,0 +1,118 @@
+﻿@model Vimba.AviTrade.Web.Areas.Traders.ViewModels.TraderDetailViewModel
+@{
+    ViewBag.Link = "details";
+    ViewBag.Title = "Trader Detail";
+}
+
+<table width="100%" class="feature-table">
+    <tr>
+        <td>
+            <h3>@Model.Trader.Name</h3>
+        </td>
+        <td align="right" class="search">
+            <form onsubmit="searchOrder();return false;">
+            <a href="javascript:createOrder();" class="link-create">Create Order</a>
+            &nbsp;<span></span>&nbsp;
+            Search by Order Id: <input id="txtSearch" size="10" class="text-search"/>
+            <input type="image" class="button-search" value=""/>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td width="50%" valign="top">
+            <table class="info-table gradient" width="100%">
+                <tbody class="head">
+                    <tr class="head1">
+                        <td rowspan="2" />
+                        <td colspan="2"><b>Pending</b></td>
+                        <td colspan="2"><b>Approved</b></td>
+                    </tr>
+                    <tr class="head2">
+                        <td><b>Orders</b></td>
+                        <td><b>Amount</b></td>
+                        <td><b>Orders</b></td>
+                        <td><b>Amount</b></td>
+                    </tr>
+                </tbody>
+                <tr>
+                    <td class="right"><b>As Seller</b></td>
+                    <td class="center">@Model.Stats.SellerPendingOrdersCount</td>
+                    <td class="right">@string.Format("{0:#,###,##0.00}", @Model.Stats.SellerPendingOrdersAmount)</td>
+                    <td class="center">@Model.Stats.SellerApprovedOrdersCount</td>
+                    <td class="right">@string.Format("{0:#,###,##0.00}", @Model.Stats.SellerApprovedOrdersAmount)</td>
+                </tr>
+                <tr>
+                    <td class="right"><b>As Buyer</b></td>
+                    <td class="center">@Model.Stats.BuyerPendingOrdersCount</td>
+                    <td class="right">@string.Format("{0:#,###,##0.00}", @Model.Stats.BuyerPendingOrdersAmount)</td>
+                    <td class="center">@Model.Stats.BuyerApprovedOrdersCount</td>
+                    <td class="right">@string.Format("{0:#,###,##0.00}", @Model.Stats.BuyerApprovedOrdersAmount)</td>
+                </tr>
+            </table>
+            <p class="right"><small>All amounts are shown in USD for the last 12 months</small></p>
+        </td>
+        <td width="50%">
+            <table class="info-table gradient" width="100%">
+                <tbody class="head">
+                    <tr class="head2">
+                        <td><b>Category</b></td>
+                        <td><b>Sub Category</b></td>
+                        <td><b>Item</b></td>
+                        <td><b>Count</b></td>
+                        <td><b>Amount</b></td>
+                    </tr>
+                </tbody>
+                <tr>
+                    <td colspan="5">
+                        <h5>Top 3 Sold Items</h5>
+                    </td>
+                </tr>
+                @foreach (var item in Model.Stats.TopSoldItems)
+                {
+                    <tr>
+                        <td align='center'>@item.Category</td>
+                        <td align='center'>@item.SubCategory</td>
+                        <td align='center'>@item.Item</td>
+                        <td align='center'>@item.Count</td>
+                        <td align='right'>@string.Format("{0:#,###,##0.00}", @item.Amount)</td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="5">
+                        <h5>Top 3 Bought Items</h5>
+                    </td>
+                </tr>
+                @foreach (var item in Model.Stats.TopBoughtItems)
+                {
+                    <tr>
+                        <td align='center'>@item.Category</td>
+                        <td align='center'>@item.SubCategory</td>
+                        <td align='center'>@item.Item</td>
+                        <td align='center'>@item.Count</td>
+                        <td align='right'>@string.Format("{0:#,###,##0.00}", @item.Amount)</td>
+                    </tr>
+                }
+            </table>
+        </td>
+    </tr>
+</table>
+
+<input type="hidden" id="traderId" value="@Model.Trader.Id" />
+<script type="text/javascript">
+    var currentTraderId = document.getElementById("traderId").value;
+
+    function createOrder(id, isQuote) {
+        new AviTrader.CreateOrder({});
+    }
+
+    function searchOrder() {
+        $.getJSON(Ext.serviceBase + 'RetrieveOrder', { traderId: currentTraderId, orderId: document.getElementById("txtSearch").value }, function (data, status, resp) {
+            var record = new OrderModel(Ext.decode(resp.responseText));
+
+            if (!record.get('IsQuoted') && !record.get('IsSeller')) new AviTrader.CreateOrder({ record: record });
+            else if (!record.get('IsQuoted') && record.get('IsSeller')) new AviTrader.CreateOrder({ record: record, quote: true });
+            else new AviTrader.ViewOrder({ record: record });
+
+        }).error(function () { Ext.Msg.alert('AviTrade', 'Order not found.'); });
+    }
+</script>

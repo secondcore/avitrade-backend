@@ -1,0 +1,70 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>@ViewBag.Title - AviTrade Traders Area</title>
+		<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<meta name="viewport" content="width=device-width" />
+		@Styles.Render("~/Content/themes/base/css", "~/Content/css")
+		@Scripts.Render("~/bundles/modernizr")
+
+        <!--[if gte IE 9]>
+          <style type="text/css">
+            .gradient {
+               filter: none;
+            }
+          </style>
+        <![endif]-->
+	</head>
+	<body class="x-body">
+	<div class="yesr-wrapper">
+		<header>
+			<div class="content-wrapper">
+				<div class="float-right">
+					<section id="login">
+						@Html.Partial("_LoginPartial")
+					</section>
+					<nav>
+						<ul id="menu">
+							<li class='@(ViewBag.Link=="home" ? "active" :"")'>@Html.ActionLink("home", "Index", "Home", new { area = "Traders" }, null)</li>
+							<li class='@(ViewBag.Link=="orders" ? "active" :"")'>@Html.ActionLink("orders", "Orders", "Home", new { area = "Traders" }, null)</li>
+							<li class='@(ViewBag.Link == "contracts" ? "active" : "")'>@Html.ActionLink("contracts", "Contracts", "Home", new { area = "Traders" }, null)</li>
+						</ul>
+					</nav>
+				</div>
+                <div>
+                    <p class="site-title">@Html.ActionLink("                 ", "Index", "Home")</p>
+                </div>
+			</div>
+		</header>
+        @Styles.Render("~/bundles/ext-css")
+	    @Scripts.Render("~/bundles/jquery")
+		@Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/ext-js")
+        @Scripts.Render("~/bundles/trader-orders")
+		<div id="body">
+			@RenderSection("breadcrumbs", required: false)
+			@RenderSection("featured", required: false)
+			<section class="content-wrapper main-content clear-fix">
+				@RenderBody()
+			</section>
+		</div>
+		<footer>
+			<div class="content-wrapper">
+				<div class="float-left">
+					<p>&copy; @DateTime.Now.Year - Traders Area - AviTrade</p>
+				</div>
+				<div class="float-right">
+					<ul id="social">
+						<li><a href="http://facebook.com" class="facebook">Facebook</a></li>
+						<li><a href="http://twitter.com" class="twitter">Twitter</a></li>
+					</ul>
+				</div>
+			</div>
+		</footer>
+		</div>
+
+
+		@RenderSection("scripts", false)
+</html>

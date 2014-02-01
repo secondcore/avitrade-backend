@@ -1,0 +1,30 @@
+﻿@using Vimba.AviTrade.Web.Helpers
+@using Vimba.AviTrade.Models
+@if (Request.IsAuthenticated) {
+    var authUser = SessionHelper.Authenticated;
+    <p>
+        You are logged in as @Html.ActionLink(User.Identity.Name, "ChangePassword", "Login", routeValues: null, htmlAttributes: new { @class = "username", title = "Change password" })
+        @Html.ActionLink("Log off", "LogOff", "Login", new { area = "" }, null)
+
+        @if (authUser.Group.Id == Group.Traders)
+        {
+            @Html.ActionLink("my area", "Index", "Home", new { area = "Traders" }, null);
+        }
+        else if (authUser.Group.Id == Group.AviTrade)
+        {
+            @Html.ActionLink("my area", "Index", "Home", new { area = "AviTrade" }, null);
+        }
+        else if (authUser.Group.Id == Group.Mebaa)
+        {
+            @Html.ActionLink("my area", "Index", "Home", new { area = "Mebaa" }, null);
+        }
+    </p>
+}
+else
+{
+    <ul>
+        <li>@Html.ActionLink("Traders Registration", "TradersRegister", "Login", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("MEBAA Registration", "MebaaRegister", "Login", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "LogOn", "Login", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

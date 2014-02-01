@@ -1,0 +1,11 @@
+﻿@if (Request.IsAuthenticated) {
+    <p>
+        You are logged in as @Html.ActionLink(User.Identity.Name, "ChangePassword", "Login", routeValues: null, htmlAttributes: new { @class = "username", title = "Change password" })
+        @Html.ActionLink("Log off", "LogOff", "Login", new { area = "" }, null)
+        @Html.ActionLink("main home", "Index", "Home", new { area = "" }, null)
+    </p>
+} else {
+    <p>
+        You are not allowed to be here!!
+    </p>
+}

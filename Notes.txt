@@ -1,0 +1,17 @@
+* The Order View, Ignore, etc must be maintained per order, user and state.
+* The Trader Info Detail must be expanded ... I am not really sure what to add in there
+* The Trader Dashboard may include several things:
+* => Top 10 Items
+* => Top Trader Partners
+* => Year To Date Figures
+* I can no longer include the old EF 4.3 in projects (i.e. tests). Hence we might have to upgrade to EF 5.x. But 
+there are several things:
+*=> EF 5.x requires .NET 4.5
+*=> .NET 4.5 is not supported yet on Windows Azure!!
+* (DONE) The View Models that Adarsh added require refactoring as they do not belong properly in the right bins
+* I would like to include a DataServiceController in each area! This will help reducing the data service code and make things more meaningful.
+* The conversion rates in dashboards are not working well.
+* I have to make the Date Fields in the Model classes accept NULL dates....not sure how to do this.
+
+
+ 
